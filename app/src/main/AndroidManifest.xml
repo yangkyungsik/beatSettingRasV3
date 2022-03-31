@@ -1,0 +1,56 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.beat.settingras">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
+
+    <application
+        android:name="com.beat.settingras.MainApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.beat.settingras.ui.view.SslLoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.beat.settingras.ui.view.ServerViewActivity"/>
+        <activity android:name="com.beat.settingras.ui.view.VideoViewActivity"/>
+        <activity android:name="com.beat.settingras.ui.view.CommonWebViewActivity"/>
+
+        <service
+            android:name="com.beat.settingras.ui.ServerService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name="com.beat.settingras.ui.HealthCheckService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <receiver android:name="com.beat.settingras.ui.receiver.AlarmBroadCastReceiver">
+            <intent-filter>
+                <action android:name="com.beat.siange.action_health"/>
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name="com.beat.settingras.ui.receiver.RemainBroadCastReceiver">
+            <intent-filter>
+                <action android:name="com.beat.signage.action_health_remain"/>
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

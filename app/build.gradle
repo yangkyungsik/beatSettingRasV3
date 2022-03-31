@@ -1,0 +1,201 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'LICENSE.txt'
+        exclude 'LICENSE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
+    defaultConfig {
+        applicationId "com.beat.settingras"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    lintOptions {
+        abortOnError false
+        disable 'MissingTranslation'
+        disable 'ExtraTranslation'
+    }
+    dexOptions {
+        jumboMode true
+        javaMaxHeapSize "4g"
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+
+    sourceSets { main { assets.srcDirs = ['src/main/assets'] } }
+
+    flavorDimensions "version"
+    productFlavors{
+        real{
+            dimension "version"
+            buildConfigField "boolean","IS_LOG","false"
+            buildConfigField "boolean","IS_REAL","true"
+            manifestPlaceholders = [ appLabel: "@string/app_name" ]
+        }
+    }
+    /**
+     * 빌드 시 파일명
+     */
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def project = "beat_signage3.0"
+            def SEP = "_"
+            def version = variant.versionName
+            def versionCode = variant.versionCode
+            def date = new Date()
+            def formattedDate = date.format('yyyyMMdd_HHmm')
+            def flavor = variant.productFlavors[0].name
+
+            def newApkName = project + SEP + flavor + SEP + version + SEP + versionCode + SEP + formattedDate + ".apk"
+
+            outputFileName = new File(newApkName)
+        }
+    }
+
+}
+
+kapt {
+    arguments {
+        arg("room.schemaLocation", "$projectDir/schemas".toString())
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.1'
+
+    // Support Libraries
+    implementation deps.support.app_compat
+    implementation deps.support.v4
+    implementation deps.support.design
+    implementation deps.support.recyclerview
+    implementation deps.constraint_layout
+    implementation deps.support.preference
+
+    // Architecture components
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+    implementation deps.room.runtime
+    implementation deps.room.rxjava2
+    implementation deps.paging_ktx
+    implementation 'androidx.databinding:databinding-runtime:4.2.2'
+
+    // Compiler
+    kapt deps.lifecycle.compiler
+    kapt deps.room.compiler
+
+    // RxJava
+    implementation deps.rx_android
+    implementation deps.rxjava2
+
+    // Kotlin
+    implementation deps.kotlin.stdlib
+
+    // Koin
+    implementation deps.koin.core
+    implementation deps.koin.android
+    implementation deps.koin.architecture
+
+    // Retrofit
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.rx_adapter
+    implementation deps.retrofit.gson
+
+    // OkHttp
+    implementation deps.okhttp_logging_interceptor
+
+    // Exoplayer
+    implementation deps.exoplayer
+
+    // Multidex
+    implementation deps.multidex
+
+    implementation deps.sshd.core
+    implementation deps.sshd.putty
+    implementation deps.sshd.common
+
+    implementation deps.apachemina
+    implementation deps.slf4japi
+    implementation deps.slf4jsimple
+    implementation deps.coroutines_android
+
+
+    // Dependencies for local unit tests
+    testImplementation deps.junit
+    testImplementation deps.mockito.all
+    testImplementation deps.hamcrest
+    testImplementation deps.kotlin.stdlib
+    testImplementation deps.kotlin.test
+    testImplementation deps.koin.test, { exclude group: 'org.mockito' }
+
+    // Android Testing Support Library's runner and rules
+    androidTestImplementation deps.axt.runner
+    androidTestImplementation deps.axt.rules
+
+    // Dependencies for Android unit tests
+    androidTestImplementation deps.junit
+    androidTestImplementation deps.mockito.core, { exclude group: 'net.bytebuddy' }
+
+    // Espresso UI Testing
+    androidTestImplementation deps.espresso.core
+    androidTestImplementation deps.espresso.contrib
+    androidTestImplementation deps.espresso.intents
+
+    // Resolve conflicts between main and test APK:
+    androidTestImplementation deps.support.annotations
+    androidTestImplementation deps.support.v4
+    androidTestImplementation deps.support.app_compat
+    androidTestImplementation deps.support.design
+
+    debugImplementation deps.leakcanary
+
+}
+
+repositories {
+    google()
+    mavenCentral()
+}

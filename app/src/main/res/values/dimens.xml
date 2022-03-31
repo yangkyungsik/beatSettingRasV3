@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- NaviagtionBar -->
+    <dimen name="navigationbar_radius">6.67dp</dimen>
+    <dimen name="navigationbar_bottom_line">0.67dp</dimen>
+    <dimen name="navigationbar_bottom_line_minus_x2">-1.34dp</dimen>
+    <dimen name="navigationbar_title_text_size">20sp</dimen>
+    <dimen name="navigationbar_height">55dp</dimen>
+</resources>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">B;eat Setting Ras 3.0</string>
+
+    <!-- 로그인 화면 -->
+    <string name="login">Login</string>
+    <string name="ip_address">IP Address</string>
+    <string name="port">Port</string>
+    <string name="password">Password</string>
+    <string name="id">Id</string>
+
+</resources>

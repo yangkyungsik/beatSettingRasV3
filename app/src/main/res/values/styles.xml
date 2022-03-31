@@ -1,0 +1,275 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+    <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+    <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+    <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+    <!--<item name="colorAccent">@color/colorAccent</item>-->
+    <!--</style>-->
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- Layout -->
+    <style name="AutoMatch">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="AutoMatch.Horizontal">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="AutoMatch.Vertical">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="AutoWrap">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AutoWrap.Horizontal">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="AutoWrap.Vertical">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="MatchAuto">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
+    <style name="MatchAuto.Horizontal">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="MatchAuto.Vertical">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="MatchMatch">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="MatchMatch.Horizontal">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="MatchMatch.Vertical">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="MatchOne">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
+
+    <style name="MatchWrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="MatchWrap.Horizontal">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="MatchWrap.Vertical">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="OneMatch">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <style name="WrapAuto">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
+    <style name="WrapAuto.Horizontal">
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="WrapAuto.Vertical">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="WrapMatch">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="WrapMatch.Horizontal">
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="WrapMatch.Vertical">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="WrapWrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="WrapWrap.Horizontal">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="WrapWrap.Vertical">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:configChanges">keyboardHidden|orientation</item>
+        <item name="android:windowSoftInputMode">stateHidden</item>
+<!--        <item name="android:fontFamily">@font/font_nanum_square</item>-->
+    </style>
+
+    <!--<style name="NanumSquareTextViewStyle" parent="@android:style/Widget.DeviceDefault.TextView">-->
+    <!--<item name="android:fontFamily">@font/font_nanum_square</item>-->
+    <!--</style>-->
+
+    <!--<style name="NanumSquareButtonStyle" parent="@android:style/Widget.DeviceDefault.Button.Borderless">-->
+    <!--<item name="android:fontFamily">@font/font_nanum_square</item>-->
+    <!--</style>-->
+
+    <!--<style name="NanumSquareEditTextStyle" parent="@android:style/Widget.DeviceDefault.EditText">-->
+    <!--<item name="android:fontFamily">@font/font_nanum_square</item>-->
+    <!--</style>-->
+
+    <!--<style name="NanumSquareRadioButtonStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.RadioButton">-->
+    <!--<item name="android:fontFamily">@font/font_nanum_square</item>-->
+    <!--</style>-->
+
+    <!--<style name="NanumSquareCheckBoxStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.CheckBox">-->
+    <!--<item name="android:fontFamily">@font/font_nanum_square</item>-->
+    <!--</style>-->
+
+    <style name="AppTheme.TransparentStatusbar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+    <style name="AppTheme.TransparentStatusbar.BackgroundTransparent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="AppTheme.TransparentStatusbar.FullScreen">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="AppTheme.Transparent">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="AppTheme.Translucent" parent="AppTheme.Transparent">
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="AppTheme.Dialog" parent="AppTheme.Translucent" >
+        <item name="android:windowEnterAnimation">@anim/scale_in</item>
+        <item name="android:windowExitAnimation">@anim/scale_out</item>
+    </style>
+
+    <style name="AppTheme.DialogNoDim" parent="AppTheme.Transparent" >
+        <item name="android:windowEnterAnimation">@anim/scale_in</item>
+        <item name="android:windowExitAnimation">@anim/scale_out</item>
+    </style>
+
+    <!-- NavigationBar -->
+    <style name="NavigationBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/navigationbar_height</item>
+    </style>
+
+
+    <!-- Button -->
+<!--    <style name="Btn">-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">match_parent</item>-->
+<!--        <item name="android:singleLine">true</item>-->
+<!--        <item name="android:gravity">center</item>-->
+<!--        <item name="android:stateListAnimator">@null</item>-->
+<!--    </style>-->
+
+<!--    <style name="btn_type_03">-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">49dp</item>-->
+<!--        <item name="android:singleLine">true</item>-->
+<!--        <item name="android:maxLines">1</item>-->
+<!--        <item name="android:gravity">center</item>-->
+<!--        <item name="android:stateListAnimator">@null</item>-->
+<!--        <item name="android:textSize">18sp</item>-->
+<!--        <item name="android:textColor">@color/f1</item>-->
+<!--        <item name="android:textStyle">bold</item>-->
+<!--        <item name="android:background">@drawable/rect_round_2dp_b3</item>-->
+<!--    </style>-->
+<!--    -->
+<!--    <style name="btn_type_transparent">-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">49dp</item>-->
+<!--        <item name="android:singleLine">true</item>-->
+<!--        <item name="android:maxLines">1</item>-->
+<!--        <item name="android:gravity">center</item>-->
+<!--        <item name="android:stateListAnimator">@null</item>-->
+<!--        <item name="android:textSize">18sp</item>-->
+<!--        <item name="android:textColor">@color/f1</item>-->
+<!--        <item name="android:textStyle">bold</item>-->
+<!--        <item name="android:background">@drawable/rect_round_2dp_transparent_stroket_2px_33c7d0</item>-->
+<!--    </style>-->
+
+<!--    <style name="btn_type_disagree">-->
+<!--        <item name="android:layout_width">match_parent</item>-->
+<!--        <item name="android:layout_height">57dp</item>-->
+<!--        <item name="android:singleLine">true</item>-->
+<!--        <item name="android:maxLines">1</item>-->
+<!--        <item name="android:gravity">center</item>-->
+<!--        <item name="android:stateListAnimator">@null</item>-->
+<!--        <item name="android:textSize">18sp</item>-->
+<!--        <item name="android:textColor">@color/b6</item>-->
+<!--        <item name="android:background">@color/b7</item>-->
+<!--    </style>-->
+
+    <!--Google Maps Library Util-->
+    <style name="amu_Bubble.TextAppearance.Dark" parent="android:TextAppearance.Medium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#ff7f7f7f</item>
+    </style>
+    <style name="amu_Bubble.TextAppearance.Light" parent="amu_Bubble.TextAppearance.Dark">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+    <style name="amu_ClusterIcon.TextAppearance" parent="android:TextAppearance">
+        <item name="android:textColor">#ffeeeeee</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>
