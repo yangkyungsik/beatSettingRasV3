@@ -6,12 +6,15 @@
     <string name="ip_address">IP Address</string>
     <string name="port">Port</string>
     <string name="password">Password</string>
-    <string name="id">Id</string>
+    <string name="username">username</string>
 
     <string name="msg_null_ip">IP is NULL</string>
     <string name="msg_null_port">Port is NULL</string>
     <string name="msg_null_username">username is NULL</string>
     <string name="msg_null_pw">PW is NULL</string>
 
+    <string name="default_ip">192.168.190.82</string>
+    <string name="default_port">2222</string>
+    <string name="default_username">beat</string>
 
 </resources>

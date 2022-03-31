@@ -8,50 +8,60 @@
         android:id="@+id/et_ip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:inputType="text"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="@string/default_ip"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-    </androidx.appcompat.widget.AppCompatEditText>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_port"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/et_ip"
+        android:inputType="number"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="@string/default_port"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-    </androidx.appcompat.widget.AppCompatEditText>
+        app:layout_constraintTop_toBottomOf="@id/et_ip" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/et_port"
+        android:inputType="text"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="@string/default_username"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-    </androidx.appcompat.widget.AppCompatEditText>
+        app:layout_constraintTop_toBottomOf="@id/et_port" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_pw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="password"
-        android:text="qlxmXbeat!!"
         android:hint="@string/password"
         android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@id/et_id"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="qlxmXbeat!!"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-    </androidx.appcompat.widget.AppCompatEditText>
+        app:layout_constraintTop_toBottomOf="@id/et_id" />
 
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="40dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

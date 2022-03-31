@@ -25,9 +25,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.beat.settingras.ui.view.ServerViewActivity"/>
-        <activity android:name="com.beat.settingras.ui.view.VideoViewActivity"/>
-        <activity android:name="com.beat.settingras.ui.view.CommonWebViewActivity"/>
+        <activity android:name=".ui.view.ServerViewActivity"/>
+        <activity android:name=".ui.view.VideoViewActivity"/>
+        <activity android:name=".ui.view.CommonWebViewActivity"/>
+        <activity android:name=".ui.view.SslProcessActivity"/>
 
         <service
             android:name="com.beat.settingras.ui.ServerService"
