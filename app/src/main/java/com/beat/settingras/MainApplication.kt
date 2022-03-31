@@ -13,6 +13,7 @@ import com.beat.settingras.util.CommonUtil
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 import kotlin.system.exitProcess
 
 class MainApplication : MultiDexApplication() {
@@ -24,7 +25,7 @@ class MainApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
-            androidLogger()
+            androidLogger(Level.NONE)
             androidContext(this@MainApplication)
             modules(listOf(networkModule, commonRepositoryModule, viewModelModule))
         }

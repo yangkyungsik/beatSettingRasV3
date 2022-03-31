@@ -34,7 +34,7 @@ class WebViewModel(
     inner class HybridJavaScriptBirdge {
         @JavascriptInterface
         fun toast(msg: String) {
-            toast.value = msg
+            showToast(msg)
         }
 
         @JavascriptInterface

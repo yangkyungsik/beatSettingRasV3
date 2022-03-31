@@ -54,9 +54,18 @@ abstract class BaseActivity<VM : BaseViewModel>(
                 finish()
             }
         })
-        viewModel.toast.observe(this, Observer {
+        viewModel.toastString.observe(this, Observer {
             if (!it.isNullOrEmpty())
                 Toast.makeText(applicationContext, it, Toast.LENGTH_SHORT).show()
+        })
+
+        viewModel.toastInt.observe(this, Observer {
+            try {
+                if (it != -1)
+                    Toast.makeText(applicationContext, getString(it), Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         })
 
         viewModel.newIntent.observe(this, Observer {

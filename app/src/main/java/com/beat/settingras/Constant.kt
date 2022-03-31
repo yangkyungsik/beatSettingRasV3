@@ -33,6 +33,10 @@ object Constant {
         const val MSG = "message"
         const val DATA = "data"
         const val PLAYBACK = "playback"
+        const val IP = "ip"
+        const val PORT = "port"
+        const val USERNAME = "username"
+        const val PW = "password"
     }
 
     object VALUE {
@@ -58,6 +62,17 @@ object Constant {
         const val ACTION_ALARM_HEALTH_RECEIVE= "com.beat.signage.action_health_receive"
     }
 
+    object PARAM{
+        const val DEVICE_TYPE = "device_type"
+        const val VERSION_CODE = "version_code"
+        const val BOOTH_CODE = "booth_code"
+        const val SECURE_ANDROID_ID = "secure_android_id"
+    }
+
+    object REQCODE{
+        const val PERMISSION_EXTERNAL_STORAGE = 10000
+    }
+
     object FILENAME{
         const val IDLE_0001 = "idle_0001"
         const val DEFAULT2 = "beat_emotion_default_ver2"
@@ -74,26 +89,4 @@ object Constant {
         const val IP_CODE:String = "ipcode.json"
     }
 
-    // 영상
-    object CASE{
-        const val DEFAULT = "idle_0001"
-        const val SERVING = "serving"
-        const val IDLE ="idle"
-        const val DETECT = "detect"
-        const val ORDER = "order"
-        const val WORKING = "working"
-        const val MAINTAIN = "maintain"
-        const val CLOSED = "closed"
-    }
-
-    object PARAM{
-        const val DEVICE_TYPE = "device_type"
-        const val VERSION_CODE = "version_code"
-        const val BOOTH_CODE = "booth_code"
-        const val SECURE_ANDROID_ID = "secure_android_id"
-    }
-
-    object REQCODE{
-        const val PERMISSION_EXTERNAL_STORAGE = 10000
-    }
 }
