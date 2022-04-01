@@ -31,9 +31,12 @@ versions.apachemina = "3.0.0-M2"
 versions.slf4japi = "1.7.5"
 versions.slf4jsimple ="1.6.4"
 versions.coroutines_android = "1.3.9"
+versions.core_ktx = "1.7.0"
+versions.lifestyle_scope = "2.4.0"
 
 //Android
 def support = [:]
+support.core = "androidx.core:core:$versions.core_ktx"
 support.annotations = "androidx.annotation:annotation:$versions.support"
 support.app_compat = "androidx.appcompat:appcompat:$versions.support"
 support.recyclerview = "androidx.recyclerview:recyclerview:$versions.support"
@@ -97,6 +100,12 @@ sshd.core = "org.apache.sshd:sshd-core:$versions.sshd"
 sshd.putty = "org.apache.sshd:sshd-putty:$versions.sshd"
 sshd.common = "org.apache.sshd:sshd-common:$versions.sshd"
 
+def ktx = [:]
+ktx.core = "androidx.core:core-ktx:$versions.core_ktx"
+ktx.lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifestyle_scope"
+ktx.lifecycle_scope = "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifestyle_scope"
+ktx.lifecycle_livedata = "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifestyle_scope"
+
 def build_versions = [:]
 build_versions.min_sdk = 19
 build_versions.target_sdk = 29
@@ -114,6 +123,7 @@ deps.mockito = mockito
 deps.axt = axt
 deps.espresso = espresso
 deps.sshd = sshd
+deps.ktx = ktx
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
 deps.okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:${versions.okhttp_logging_interceptor}"
 deps.paging_ktx = "androidx.paging:paging-runtime-ktx:$versions.paging"
