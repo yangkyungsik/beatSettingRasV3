@@ -18,13 +18,13 @@ class SslProcessViewModel(private val repository:RemoteSSLRepository) : BaseView
     var command:String?=null
     var client:SshClient? = null
 
-    fun init(ip:String, port:Int, userName:String, password:String){
+    fun init(ip:String?, port:Int, userName:String?, password:String?){
         this.ip = ip
         this.port = port
         this.userName = userName
         this.password = password
-
-        repository.start()
+        repository.setConnectInfo(ip,port,userName,password)
+        repository.connect()
     }
 
     fun connect(){

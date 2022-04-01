@@ -1,12 +1,76 @@
 package com.beat.settingras.data.remote.source.repository
 
+import android.location.Address
+import android.util.Log
 import com.beat.settingras.AppLog
-import com.beat.settingras.data.remote.source.base.BaseRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.apache.sshd.client.SshClient
+import org.apache.sshd.client.channel.ClientChannel
+import org.apache.sshd.client.channel.ClientChannelEvent
+import org.apache.sshd.common.channel.Channel
+import org.apache.sshd.common.session.Session
+import java.io.ByteArrayOutputStream
+import java.util.*
+import java.util.concurrent.TimeUnit
 
-class RemoteSSLRepository(private val client: SshClient) : AbstractBaseRepository(){
+class RemoteSSLRepository(private val client: SshClient) : AbstractBaseRepository() {
 
-    fun start(){
+    var session: Session? = null
+    var channel: ClientChannel? = null
 
+    private var ip:String?=null
+    private var port:Int = 0
+    private var userName: String?=null
+    private var password: String?=null
+
+    fun setConnectInfo(ip:String?,port:Int, userName:String?, password:String?){
+        this.ip = ip
+        this.port = port
+        this.userName = userName
+        this.password = password
+    }
+
+    fun connect(){
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                try {
+                    client.start()
+                    var session = client?.run {
+                        this.connect(userName, ip, port).verify(10000).session
+                    }
+                    if(session!=null) {
+                        session?.addPasswordIdentity(password)
+                        session?.auth()?.verify(5000)
+                    }
+                    AppLog.e("Connection establihed")
+
+                    channel = session?.createChannel(org.apache.sshd.common.channel.Channel.CHANNEL_SHELL)
+                    var responseStream = ByteArrayOutputStream()
+                    channel?.setOut(responseStream)
+
+                    channel?.open()?.verify(5, TimeUnit.SECONDS)
+                    channel?.invertedIn.use { pipedIn ->
+                        pipedIn?.write("java -version\n".toByteArray())
+                        pipedIn?.flush()
+                    }
+                    channel?.waitFor(
+                        EnumSet.of(ClientChannelEvent.CLOSED),
+                        TimeUnit.SECONDS.toMillis(5)
+                    );
+                    val responseString = String(responseStream.toByteArray())
+                    Log.d("SSH",responseString)
+
+                } catch (e: java.lang.Exception) {
+                    e.printStackTrace()
+                    AppLog.e("error")
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+        }
     }
 }
