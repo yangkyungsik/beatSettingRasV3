@@ -6,6 +6,8 @@ import com.google.gson.GsonBuilder
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.apache.sshd.client.SshClient
+import org.apache.sshd.server.forward.AcceptAllForwardingFilter
 import org.koin.android.ext.koin.androidApplication
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -52,4 +54,9 @@ val networkModule = module{
             .client(get())
             .build()
     }
+
+    single(named(Constant.KOINNAME.SSL)) {
+        SshClient.setUpDefaultClient()
+    }
+
 }

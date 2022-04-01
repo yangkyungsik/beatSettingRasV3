@@ -9,5 +9,5 @@ val viewModelModule  = module{
     viewModel { VideoViewModel() }
     viewModel { WebViewModel(get(),get()) }
     viewModel { SslLoginViewModel() }
-    viewModel { SslProcessViewModel() }
+    viewModel { SslProcessViewModel(get()) }
 }

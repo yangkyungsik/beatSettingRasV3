@@ -20,6 +20,9 @@ class SslLoginActivity : BaseActivity<SslLoginViewModel>(SslLoginViewModel::clas
         super.onCreate(savedInstanceState)
         init()
         initObserver()
+        val key = "user.home"
+        val path: String = applicationInfo.dataDir
+        System.setProperty(key, path)
     }
 
     private fun init() {

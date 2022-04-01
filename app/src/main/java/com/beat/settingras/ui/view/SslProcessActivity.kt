@@ -13,5 +13,7 @@ class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel
         super.onCreate(savedInstanceState)
         binding = ActivitySslProcessBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewModel.init("12",1,"1","11")
     }
 }

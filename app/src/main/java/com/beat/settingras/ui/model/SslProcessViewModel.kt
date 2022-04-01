@@ -1,12 +1,13 @@
 package com.beat.settingras.ui.model
 
 import androidx.lifecycle.viewModelScope
+import com.beat.settingras.data.remote.source.repository.RemoteSSLRepository
 import com.beat.settingras.ui.BaseViewModel
 import org.apache.sshd.client.SshClient
 import org.apache.sshd.client.channel.ClientChannel
 import org.apache.sshd.server.forward.AcceptAllForwardingFilter
 
-class SslProcessViewModel : BaseViewModel() {
+class SslProcessViewModel(private val repository:RemoteSSLRepository) : BaseViewModel() {
 
     var ip:String?=null
     var port:Int = 0
@@ -22,13 +23,12 @@ class SslProcessViewModel : BaseViewModel() {
         this.port = port
         this.userName = userName
         this.password = password
+
+        repository.start()
     }
 
-    fun start(){
-        client= SshClient.setUpDefaultClient().apply {
-            forwardingFilter = AcceptAllForwardingFilter.INSTANCE
-        }
-        client?.start()
+    fun connect(){
+
     }
 
 }

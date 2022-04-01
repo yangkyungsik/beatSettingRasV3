@@ -53,6 +53,7 @@ object Constant {
     object KOINNAME{
         const val COMMON_NETWORK="COMMON"
         const val BOOTH_NETWORK="BOOTH_NETWORK"
+        const val SSL="SSL"
     }
 
     object INTENT_ACION{
