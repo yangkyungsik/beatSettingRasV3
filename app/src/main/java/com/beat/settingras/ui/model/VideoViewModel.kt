@@ -26,8 +26,8 @@ import java.io.StringWriter
 class VideoViewModel : BaseViewModel() {
 
 
-    lateinit var type:String
-    lateinit var filePath:String
+    var type:String?=null
+    var filePath:String?=null
 
     //var fileQueue: Queue<String> = LinkedList<String>()
     var useController:Boolean = true

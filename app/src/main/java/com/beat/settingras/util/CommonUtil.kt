@@ -623,7 +623,7 @@ object CommonUtil {
     ): Boolean {
         val pm = context.packageManager
         try {
-            pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA)
+            pm.getApplicationInfo(packageName!!, PackageManager.GET_META_DATA)
         } catch (e: PackageManager.NameNotFoundException) {
             //e.printStackTrace();
             //LogPrintUtil.LogPrint("App " + packageName + " Not Installl ");
@@ -1139,12 +1139,12 @@ object CommonUtil {
 
     fun getIntentExtra(
         intent: Intent,
-        param: String?,
+        param: String,
         defaultValue: String
-    ): String {
+    ): String? {
         return try {
             if (!intent.hasExtra(param)) defaultValue else {
-                intent.getStringExtra(param)
+                intent.getStringExtra(param)!!
             }
         } catch (e: Exception) {
             e.printStackTrace()

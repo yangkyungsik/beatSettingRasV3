@@ -3,8 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 31
+    buildToolsVersion "30.0.2"
 
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
@@ -20,7 +20,7 @@ android {
     defaultConfig {
         applicationId "com.beat.settingras"
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0.0"
         multiDexEnabled true
@@ -106,9 +106,9 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.1'
 
     // Support Libraries
+    implementation deps.support.core
     implementation deps.support.app_compat
     implementation deps.support.v4
     implementation deps.support.design
@@ -157,6 +157,11 @@ dependencies {
     implementation deps.sshd.core
     implementation deps.sshd.putty
     implementation deps.sshd.common
+
+    implementation deps.ktx.core
+    implementation deps.ktx.lifecycle_viewmodel
+    implementation deps.ktx.lifecycle_scope
+    implementation deps.ktx.lifecycle_livedata
 
     implementation deps.apachemina
     implementation deps.slf4japi

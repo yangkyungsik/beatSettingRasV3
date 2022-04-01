@@ -9,6 +9,7 @@ import com.beat.settingras.R
 import com.beat.settingras.databinding.ActivityVideoBinding
 import com.beat.settingras.ui.BaseActivity
 import com.beat.settingras.ui.model.VideoViewModel
+import com.beat.settingras.util.CommonUtil
 import com.google.android.exoplayer2.Player
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -63,9 +64,10 @@ class VideoViewActivity : BaseActivity<VideoViewModel>(VideoViewModel::class) {
     }
 
     private fun initializePlayer(){
-        model.type = intent.getStringExtra(VideoViewActivity.TYPE)
+        model.type = CommonUtil.getIntentExtra(intent,TYPE,"")
         if(intent.hasExtra(FILEPATH)) {
-            model.filePath = intent.getStringExtra(FILEPATH)
+            CommonUtil.getIntentExtra(intent,FILEPATH,"")
+            model.filePath = CommonUtil.getIntentExtra(intent,FILEPATH,"")
         }
 
         model.useController = intent.getBooleanExtra(USE_CONTROLLER,true)
