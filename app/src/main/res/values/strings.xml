@@ -13,8 +13,8 @@
     <string name="msg_null_username">username is NULL</string>
     <string name="msg_null_pw">PW is NULL</string>
 
-    <string name="default_ip">192.168.190.82</string>
-    <string name="default_port">2222</string>
-    <string name="default_username">beat</string>
+    <string name="default_ip"></string>
+    <string name="default_port"></string>
+    <string name="default_username"></string>
 
 </resources>
