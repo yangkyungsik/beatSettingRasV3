@@ -1,7 +1,9 @@
 package com.beat.settingras.ui.model
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.beat.settingras.AppLog
+import com.beat.settingras.R
 import com.beat.settingras.data.remote.source.repository.RemoteSSLRepository
 import com.beat.settingras.ui.BaseViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +18,7 @@ class SslProcessViewModel(private val repository:RemoteSSLRepository) : BaseView
     var port:Int = 0
     var userName:String?=null
     var password:String?=null
+    var cmdText:MutableLiveData<String?>  = MutableLiveData<String?>("")
 
     fun init(ip:String?, port:Int, userName:String?, password:String?){
         this.ip = ip
@@ -29,6 +32,7 @@ class SslProcessViewModel(private val repository:RemoteSSLRepository) : BaseView
                 .flowOn(Dispatchers.Default)
                 .catch {
                     AppLog.d(TAG,"connect error ${this.toString()}")
+                    showToast(R.string.error_connect)
                     finish.value = true
                 }
                 .collect {
@@ -37,8 +41,24 @@ class SslProcessViewModel(private val repository:RemoteSSLRepository) : BaseView
         }
     }
 
+    fun sendMsg(msg:String){
+        viewModelScope.launch {
+            repository.sendMsg(msg)
+                .flowOn(Dispatchers.Default)
+                .catch {
+                    AppLog.d(TAG,"connect error ${this.toString()}")
+                    showToast(R.string.error_connect)
+                    finish.value = true
+                }
+                .collect {
+                    AppLog.d(TAG,"connect $it")
+                    cmdText.value = it
+                }
+        }
+    }
+
     override fun onCleared() {
-        repository.clear()
+        repository.logout()
         super.onCleared()
     }
 

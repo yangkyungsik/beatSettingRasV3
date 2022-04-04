@@ -6,4 +6,5 @@
 
     <color name="common_transparent">#00000000</color>
     <color name="c_000000">#000000</color>
+    <color name="c_ffffff">#ffffff</color>
 </resources>
