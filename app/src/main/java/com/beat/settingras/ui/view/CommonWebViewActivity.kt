@@ -66,13 +66,64 @@ class CommonWebViewActivity : BaseActivity<WebViewModel>(WebViewModel::class) {
     }
 
     private fun startWebProcess() {
-        setObserver()
         initWebViewSetting()
         startService(Intent(applicationContext, HealthCheckService::class.java))
         initReceiver()
     }
 
-    private fun setObserver() {
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun initWebViewSetting() {
+
+        // set web view
+        binding?.webview.apply {
+            viewModel.setWebViewSetting(this)
+            viewModel.setDefaultJavascriptInterface(this)
+            viewModel.setDefaultChromeWebViewClient(this)
+        }
+
+        if (BuildConfig.DEBUG && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true)
+        }
+
+        binding.webview.requestFocus()
+        binding.webview.loadUrl(API.URL.BASE_WEB_URL)
+    }
+
+    private fun initReceiver() {
+        mRefreshReceiver = WebViewRefreshReceiver().apply {
+            val filter = IntentFilter()
+            filter.addAction(Constant.INTENT_ACION.ACTION_ALARM_HEALTH_RECEIVE)
+            LocalBroadcastManager.getInstance(applicationContext).registerReceiver(this, filter)
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        FileUtil.writeIP()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopService(Intent(applicationContext, HealthCheckService::class.java))
+        mRefreshReceiver?.let {
+            LocalBroadcastManager.getInstance(applicationContext).unregisterReceiver(it)
+        }
+    }
+
+    override fun initListener() {
+        binding.hidden1.setOnClickListener {
+            SysUtils.reboot()
+        }
+        binding.hidden2.setOnClickListener {
+            startSetting(this, findSettingPackages(this))
+        }
+    }
+
+    override fun initObserver() {
         viewModel.jsAlert.observe(this, Observer {
             if (!isFinishing) {
                 val msg: String? = it[Constant.KEY.MSG] as String?
@@ -128,55 +179,5 @@ class CommonWebViewActivity : BaseActivity<WebViewModel>(WebViewModel::class) {
                 loadUrl(it)
             }
         })
-    }
-
-    @SuppressLint("SetJavaScriptEnabled")
-    private fun initWebViewSetting() {
-
-        // set web view
-        binding?.webview.apply {
-            viewModel.setWebViewSetting(this)
-            viewModel.setDefaultJavascriptInterface(this)
-            viewModel.setDefaultChromeWebViewClient(this)
-        }
-
-        if (BuildConfig.DEBUG && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            WebView.setWebContentsDebuggingEnabled(true)
-        }
-
-        binding.webview.requestFocus()
-        binding.webview.loadUrl(API.URL.BASE_WEB_URL)
-
-        binding.hidden1.setOnClickListener {
-            SysUtils.reboot()
-        }
-        binding.hidden2.setOnClickListener {
-            startSetting(this, findSettingPackages(this))
-        }
-    }
-
-    private fun initReceiver() {
-        mRefreshReceiver = WebViewRefreshReceiver().apply {
-            val filter = IntentFilter()
-            filter.addAction(Constant.INTENT_ACION.ACTION_ALARM_HEALTH_RECEIVE)
-            LocalBroadcastManager.getInstance(applicationContext).registerReceiver(this, filter)
-        }
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        FileUtil.writeIP()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        stopService(Intent(applicationContext, HealthCheckService::class.java))
-        mRefreshReceiver?.let {
-            LocalBroadcastManager.getInstance(applicationContext).unregisterReceiver(it)
-        }
     }
 }

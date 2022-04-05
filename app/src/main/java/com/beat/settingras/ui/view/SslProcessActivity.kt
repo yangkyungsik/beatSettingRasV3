@@ -18,24 +18,35 @@ class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel
         binding = ActivitySslProcessBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel.init(CommonUtil.getIntentExtra(intent,Constant.KEY.IP,""),
-            CommonUtil.getIntentExtra(intent,Constant.KEY.PORT,0),
-            CommonUtil.getIntentExtra(intent,Constant.KEY.USERNAME,""),
-            CommonUtil.getIntentExtra(intent,Constant.KEY.PW,""),
-            CommonUtil.getIntentExtra(intent,Constant.KEY.STORECODE,""))
+        viewModel.init(
+            CommonUtil.getIntentExtra(intent, Constant.KEY.IP, ""),
+            CommonUtil.getIntentExtra(intent, Constant.KEY.PORT, 0),
+            CommonUtil.getIntentExtra(intent, Constant.KEY.USERNAME, ""),
+            CommonUtil.getIntentExtra(intent, Constant.KEY.PW, ""),
+            CommonUtil.getIntentExtra(intent, Constant.KEY.STORECODE, "")
+        )
+    }
 
-        binding.btnSendMsg1.setOnClickListener {
-            val arr = resources.getStringArray(R.array.init_bash_profile)
-            viewModel.sendMsgArray(arr)
-        }
-
-        binding.btnSendMsg2.setOnClickListener {
-
-        }
-
+    override fun initObserver() {
         viewModel.cmdText.observe(this, Observer {
             binding.tvScroll.append(it)
             binding.scrollview.scrollTo(0, binding.tvScroll.bottom)
         })
     }
+
+    override fun initListener() {
+        binding.btnSendMsg1.setOnClickListener {
+            viewModel.sendMsgArray(resources.getStringArray(R.array.cmd_init_bash_profile))
+        }
+
+        binding.btnSendMsg2.setOnClickListener {
+            viewModel.readFile(resources.getStringArray(R.array.cmd_init_bash_profile))
+        }
+
+        binding.btnSendMsg2.setOnClickListener {
+
+        }
+    }
+
+
 }

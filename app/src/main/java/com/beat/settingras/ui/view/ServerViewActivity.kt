@@ -25,14 +25,6 @@ class ServerViewActivity : BaseActivity<ServerViewModel>(ServerViewModel::class)
         setContentView(binding.root)
     }
 
-    private fun setObserver() {
-        serverViewModel.serverStatus.observe(this, Observer {
-            if (!it.isNullOrEmpty()) {
-                binding.serverTextView.text = it
-            }
-        })
-    }
-
     override fun onResume() {
         super.onResume()
 
@@ -41,11 +33,6 @@ class ServerViewActivity : BaseActivity<ServerViewModel>(ServerViewModel::class)
 //        finish()
 
         viewModel.setTransFileNameListener(this)
-
-    }
-
-    companion object {
-        val TAG: String = ServerViewActivity::class.java.simpleName
     }
 
     override fun transFileName(fileName: String) {
@@ -79,4 +66,22 @@ class ServerViewActivity : BaseActivity<ServerViewModel>(ServerViewModel::class)
         serverViewModel.stopServer()
         super.onDestroy()
     }
+
+    override fun initListener() {
+
+    }
+
+    override fun initObserver() {
+        serverViewModel.serverStatus.observe(this, Observer {
+            if (!it.isNullOrEmpty()) {
+                binding.serverTextView.text = it
+            }
+        })
+    }
+
+
+    companion object {
+        val TAG: String = ServerViewActivity::class.java.simpleName
+    }
+
 }

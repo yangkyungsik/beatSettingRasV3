@@ -18,25 +18,16 @@ class SslLoginActivity : BaseActivity<SslLoginViewModel>(SslLoginViewModel::clas
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        init()
-        initObserver()
+        binding = ActivitySslLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         val key = "user.home"
         val path: String = applicationInfo.dataDir
         System.setProperty(key, path)
     }
 
-    private fun init() {
-        binding = ActivitySslLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        binding.btnLogin.setOnClickListener {
-            viewModel.validateData(
-                binding.etIp.text.toString(), binding.etPort.text.toString(), binding
-                    .etId.text.toString(), binding.etPw.text.toString(), binding.etStoreCode.text.toString()
-            )
-        }
-    }
 
-    private fun initObserver() {
+    override fun initObserver() {
         viewModel.validate.observe(this, Observer {
             if (it == true) {
                 var intent = Intent(applicationContext, SslProcessActivity::class.java).apply {
@@ -49,5 +40,14 @@ class SslLoginActivity : BaseActivity<SslLoginViewModel>(SslLoginViewModel::clas
                 startActivity(intent)
             }
         })
+    }
+
+    override fun initListener() {
+        binding.btnLogin.setOnClickListener {
+            viewModel.validateData(
+                binding.etIp.text.toString(), binding.etPort.text.toString(), binding
+                    .etId.text.toString(), binding.etPw.text.toString(), binding.etStoreCode.text.toString()
+            )
+        }
     }
 }

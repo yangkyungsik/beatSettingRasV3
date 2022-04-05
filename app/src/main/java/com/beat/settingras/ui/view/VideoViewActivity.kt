@@ -22,33 +22,7 @@ class VideoViewActivity : BaseActivity<VideoViewModel>(VideoViewModel::class) {
         super.onCreate(savedInstanceState)
         binding = ActivityVideoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setObserver()
         AppLog.d(TAG,"onCreate")
-    }
-
-
-    private fun setObserver(){
-        model.playerState.observe(this, Observer() {
-            when(it){
-                Player.STATE_ENDED ->{
-                    model.releasePlayer()
-                    model.preparePlayer(applicationContext, contentResolver)
-                }
-            }
-        })
-
-        model.restart.observe(this, Observer(){
-            if(it==true){
-                var intent = Intent().apply {
-                    setClass(applicationContext,VideoViewActivity::class.java)
-                    putExtra(VideoViewActivity.TYPE, Constant.VALUE.LOCAL)
-                    putExtra(VideoViewActivity.FILEPATH,it)
-                    putExtra(VideoViewActivity.USE_CONTROLLER,false)
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                }
-                startActivity(intent)
-            }
-        })
     }
 
     override fun onPause() {
@@ -93,11 +67,37 @@ class VideoViewActivity : BaseActivity<VideoViewModel>(VideoViewModel::class) {
         model.releasePlayer()
     }
 
+    override fun initListener() {
+
+    }
+
+    override fun initObserver() {
+        model.playerState.observe(this, Observer() {
+            when(it){
+                Player.STATE_ENDED ->{
+                    model.releasePlayer()
+                    model.preparePlayer(applicationContext, contentResolver)
+                }
+            }
+        })
+
+        model.restart.observe(this, Observer(){
+            if(it==true){
+                var intent = Intent().apply {
+                    setClass(applicationContext,VideoViewActivity::class.java)
+                    putExtra(VideoViewActivity.TYPE, Constant.VALUE.LOCAL)
+                    putExtra(VideoViewActivity.FILEPATH,it)
+                    putExtra(VideoViewActivity.USE_CONTROLLER,false)
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                }
+                startActivity(intent)
+            }
+        })
+    }
+
     companion object{
         val FILEPATH = "FILEPATH"
         val TYPE = "TYPE"
         val USE_CONTROLLER = "use_controller"
     }
-
-
 }

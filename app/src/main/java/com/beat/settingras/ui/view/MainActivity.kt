@@ -15,12 +15,15 @@ class MainActivity : BaseActivity<MainViewModel>(MainViewModel::class){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setObserver()
     }
 
-    private fun setObserver(){
+    override fun initListener() {
+    }
+
+    override fun initObserver() {
         mainViewModel.test.observe(this, Observer {
             Toast.makeText(applicationContext,it.data.androidNotice,Toast.LENGTH_SHORT).show()
         })
+
     }
 }

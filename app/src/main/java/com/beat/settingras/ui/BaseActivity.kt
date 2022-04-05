@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.beat.settingras.AppLog
 import com.beat.settingras.R
 import com.beat.settingras.ui.widget.CommonProgressDialog
@@ -26,7 +27,11 @@ abstract class BaseActivity<VM : BaseViewModel>(
     protected val viewModel: VM by viewModel(clazz) //Reflection class를 이용한 ViewModel Read
     private var mProgressDialog: CommonProgressDialog? = null
 
+    abstract fun initListener()
+    abstract fun initObserver()
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        AppLog.l()
         super.onCreate(savedInstanceState)
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -35,10 +40,17 @@ abstract class BaseActivity<VM : BaseViewModel>(
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
 
-        setBaseObserver()
+        lifecycleScope.launchWhenCreated {
+            setBaseObserver()
+            initListener()
+            initObserver()
+        }
     }
 
-    fun setBaseObserver() {
+
+
+    private fun setBaseObserver() {
+        AppLog.l()
         viewModel.refreshing.observe(this, Observer {
             if (it == true) {
                 AppLog.d(TAG, "showProgressBar")
@@ -48,7 +60,6 @@ abstract class BaseActivity<VM : BaseViewModel>(
                 hideProgressDialogView()
             }
         })
-        //TODO 테스트용
         viewModel.finish.observe(this, Observer {
             if (it == true) {
                 finish()

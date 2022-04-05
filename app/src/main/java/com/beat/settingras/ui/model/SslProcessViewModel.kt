@@ -20,6 +20,7 @@ class SslProcessViewModel(private val repository:RemoteSSLRepository) : BaseView
     var password:String?=null
     var storeCode:String?=null
     var cmdText:MutableLiveData<String?>  = MutableLiveData<String?>("")
+    var readText:MutableLiveData<String?> = MutableLiveData<String?>("")
 
     fun init(ip:String?, port:Int, userName:String?, password:String?,storeCode:String?){
         this.ip = ip
@@ -82,6 +83,31 @@ class SslProcessViewModel(private val repository:RemoteSSLRepository) : BaseView
                 }
         }
     }
+
+    /**
+     * bashProfile 읽기
+     */
+    fun readFile(msg:Array<String>){
+        viewModelScope.launch {
+            var msgArr:String?=""
+            for(i in msg.indices){
+                msgArr+=msg[i]+"\n"
+            }
+            repository.sendMsg(msgArr)
+                .flowOn(Dispatchers.Default)
+                .catch {
+                    AppLog.d(TAG,"connect error ${this.toString()}")
+                    showToast(R.string.error_connect)
+                    finish.value = true
+                }
+                .collect {
+                    AppLog.d(TAG,"connect $it")
+                    cmdText.value = it
+                    readText.value = it
+                }
+        }
+    }
+
 
     override fun onCleared() {
         repository.logout()
