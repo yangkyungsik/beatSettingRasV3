@@ -54,6 +54,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_id" />
 
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_store_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/storecode"
+        android:inputType="text"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="@string/default_username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_pw" />
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"

@@ -37,6 +37,7 @@ object Constant {
         const val PORT = "port"
         const val USERNAME = "username"
         const val PW = "password"
+        const val STORECODE = "storecode"
     }
 
     object VALUE {

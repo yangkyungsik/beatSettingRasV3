@@ -3,6 +3,7 @@ package com.beat.settingras.ui.view
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.beat.settingras.Constant
+import com.beat.settingras.R
 import com.beat.settingras.databinding.ActivitySslProcessBinding
 import com.beat.settingras.ui.BaseActivity
 import com.beat.settingras.ui.model.SslProcessViewModel
@@ -20,14 +21,16 @@ class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel
         viewModel.init(CommonUtil.getIntentExtra(intent,Constant.KEY.IP,""),
             CommonUtil.getIntentExtra(intent,Constant.KEY.PORT,0),
             CommonUtil.getIntentExtra(intent,Constant.KEY.USERNAME,""),
-            CommonUtil.getIntentExtra(intent,Constant.KEY.PW,""))
+            CommonUtil.getIntentExtra(intent,Constant.KEY.PW,""),
+            CommonUtil.getIntentExtra(intent,Constant.KEY.STORECODE,""))
 
         binding.btnSendMsg1.setOnClickListener {
-            viewModel.sendMsg("-java version\n")
+            val arr = resources.getStringArray(R.array.init_bash_profile)
+            viewModel.sendMsgArray(arr)
         }
 
         binding.btnSendMsg2.setOnClickListener {
-            viewModel.sendMsg("adb connect 192.168.190.201\nadb devices\nadb disconnect\n")
+
         }
 
         viewModel.cmdText.observe(this, Observer {

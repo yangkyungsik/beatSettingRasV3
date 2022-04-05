@@ -8,7 +8,7 @@ class SslLoginViewModel : BaseViewModel(){
 
     val validate = MutableLiveData<Boolean>(false)
 
-    fun validateData(ip:String?, port:String?, username:String?, password:String?){
+    fun validateData(ip:String?, port:String?, username:String?, password:String?,storeCode:String?){
         when {
             ip.isNullOrEmpty() -> {
                 validate.value = false
@@ -26,6 +26,11 @@ class SslLoginViewModel : BaseViewModel(){
                 return
             }
             password.isNullOrEmpty() -> {
+                validate.value = false
+                showToast(R.string.msg_null_pw)
+                return
+            }
+            storeCode.isNullOrEmpty() -> {
                 validate.value = false
                 showToast(R.string.msg_null_pw)
                 return

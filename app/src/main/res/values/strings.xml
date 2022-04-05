@@ -7,16 +7,33 @@
     <string name="port">Port</string>
     <string name="password">Password</string>
     <string name="username">username</string>
+    <string name="storecode">storecode</string>
 
     <string name="msg_null_ip">IP is NULL</string>
     <string name="msg_null_port">Port is NULL</string>
     <string name="msg_null_username">username is NULL</string>
     <string name="msg_null_pw">PW is NULL</string>
+    <string name="msg_null_storecode">Storecode is NULL</string>
 
-    <string name="default_ip"></string>
-    <string name="default_port"></string>
-    <string name="default_username"></string>
+    <string name="default_ip">beat-b0008.iptime.org</string>
+    <string name="default_port">38222</string>
+    <string name="default_username">beat</string>
+    <string name="default_storecode">beat</string>
 
     <string name="error_connect">Connet failed. Check ip, port, username, password</string>
 
+    <string name="btn_1">bash_profile write</string>
+    <string name="btn_2">bash_profile remove</string>
+    <string name="btn_3">bash_profile read</string>
+
+    <string-array name="init_bash_profile">
+        <item>echo -e "JAVA_HOME=/usr/lib/jvm/jdk1.8.0_15" >> test1.txt\n</item>
+        <item>echo -e "PATH='$PATH:$JAVA_HOME/bin'" >> test1.txt\n</item>
+        <item>echo -e "\n" >> test1.txt</item>
+        <item>echo -e "export JAVA_HOME PATH" >> test1.txt\n</item>
+        <item>echo -e "export BOOTH_ID=!@#$" >> test1.txt\n</item>
+        <item>echo -e "alias ll='ls -all'" >> test1.txt\n</item>
+        <item>echo -e "export SPRING_PROFILES_ACTIVE=real" >> test1.txt\n</item>
+        <item>cat test1.txt</item>
+    </string-array>
 </resources>

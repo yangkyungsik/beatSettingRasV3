@@ -18,13 +18,15 @@ class SslProcessViewModel(private val repository:RemoteSSLRepository) : BaseView
     var port:Int = 0
     var userName:String?=null
     var password:String?=null
+    var storeCode:String?=null
     var cmdText:MutableLiveData<String?>  = MutableLiveData<String?>("")
 
-    fun init(ip:String?, port:Int, userName:String?, password:String?){
+    fun init(ip:String?, port:Int, userName:String?, password:String?,storeCode:String?){
         this.ip = ip
         this.port = port
         this.userName = userName
         this.password = password
+        this.storeCode = storeCode
         repository.setConnectInfo(ip,port,userName,password)
 
         viewModelScope.launch {
@@ -44,6 +46,30 @@ class SslProcessViewModel(private val repository:RemoteSSLRepository) : BaseView
     fun sendMsg(msg:String){
         viewModelScope.launch {
             repository.sendMsg(msg)
+                .flowOn(Dispatchers.Default)
+                .catch {
+                    AppLog.d(TAG,"connect error ${this.toString()}")
+                    showToast(R.string.error_connect)
+                    finish.value = true
+                }
+                .collect {
+                    AppLog.d(TAG,"connect $it")
+                    cmdText.value = it
+                }
+        }
+    }
+
+    fun sendMsgArray(msg:Array<String>){
+        viewModelScope.launch {
+            var msgArr:String?=""
+
+            for(i in msg.indices){
+                if(msg[i].contains("!@#$")){
+                    msg[i] = msg[i].replace("!@#$",storeCode+"")
+                }
+                msgArr+=msg[i]+"\n"
+            }
+            repository.sendMsg(msgArr)
                 .flowOn(Dispatchers.Default)
                 .catch {
                     AppLog.d(TAG,"connect error ${this.toString()}")

@@ -31,7 +31,7 @@ class SslLoginActivity : BaseActivity<SslLoginViewModel>(SslLoginViewModel::clas
         binding.btnLogin.setOnClickListener {
             viewModel.validateData(
                 binding.etIp.text.toString(), binding.etPort.text.toString(), binding
-                    .etId.text.toString(), binding.etPw.text.toString()
+                    .etId.text.toString(), binding.etPw.text.toString(), binding.etStoreCode.text.toString()
             )
         }
     }
@@ -44,6 +44,7 @@ class SslLoginActivity : BaseActivity<SslLoginViewModel>(SslLoginViewModel::clas
                     putExtra(Constant.KEY.PORT,binding.etPort.text.toString().toInt())
                     putExtra(Constant.KEY.USERNAME,binding.etId.text.toString())
                     putExtra(Constant.KEY.PW,binding.etPw.text.toString())
+                    putExtra(Constant.KEY.STORECODE,binding.etStoreCode.text.toString())
                 }
                 startActivity(intent)
             }
