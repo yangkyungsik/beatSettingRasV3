@@ -25,10 +25,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.view.ServerViewActivity"/>
-        <activity android:name=".ui.view.VideoViewActivity"/>
-        <activity android:name=".ui.view.CommonWebViewActivity"/>
-        <activity android:name=".ui.view.SslProcessActivity"/>
+        <activity android:name=".ui.view.ServerViewActivity" />
+        <activity android:name=".ui.view.VideoViewActivity" />
+        <activity android:name=".ui.view.CommonWebViewActivity" />
+        <activity android:name=".ui.view.SslProcessActivity" />
+        <activity android:name=".ui.view.ReadTextActivity" />
 
         <service
             android:name="com.beat.settingras.ui.ServerService"
@@ -40,15 +41,19 @@
             android:enabled="true"
             android:exported="false" />
 
-        <receiver android:name="com.beat.settingras.ui.receiver.AlarmBroadCastReceiver">
+        <receiver
+            android:name="com.beat.settingras.ui.receiver.AlarmBroadCastReceiver"
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.beat.siange.action_health"/>
+                <action android:name="com.beat.siange.action_health" />
             </intent-filter>
         </receiver>
 
-        <receiver android:name="com.beat.settingras.ui.receiver.RemainBroadCastReceiver">
+        <receiver
+            android:name="com.beat.settingras.ui.receiver.RemainBroadCastReceiver"
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.beat.signage.action_health_remain"/>
+                <action android:name="com.beat.signage.action_health_remain" />
             </intent-filter>
         </receiver>
 

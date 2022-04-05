@@ -1,5 +1,6 @@
 package com.beat.settingras.di
 
+import com.beat.settingras.ui.BaseViewModel
 import com.beat.settingras.ui.model.*
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -10,4 +11,5 @@ val viewModelModule  = module{
     viewModel { WebViewModel(get(),get()) }
     viewModel { SslLoginViewModel() }
     viewModel { SslProcessViewModel(get()) }
+    viewModel { BaseViewModel() }
 }

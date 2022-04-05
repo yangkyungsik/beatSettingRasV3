@@ -15,34 +15,36 @@
     <string name="msg_null_pw">PW is NULL</string>
     <string name="msg_null_storecode">Storecode is NULL</string>
 
-    <string name="default_ip">beat-b0008.iptime.org</string>
-    <string name="default_port">38222</string>
+    <string name="default_ip">192.168.190.82</string>
+    <string name="default_port">2222</string>
     <string name="default_username">beat</string>
-    <string name="default_storecode">beat</string>
+    <string name="default_storecode">B0008</string>
 
     <string name="error_connect">Connet failed. Check ip, port, username, password</string>
 
-    <string name="btn_1">bash_profile write</string>
-    <string name="btn_2">bash_profile remove</string>
-    <string name="btn_3">bash_profile read</string>
+    <string name="btn_1">Write bash_profile</string>
+    <string name="btn_2">Remove bash_profile</string>
+    <string name="btn_3">Read bash_profile</string>
+    <string name="btn_4">Install ADB</string>
 
-    <string name="cmd_remove_bash_profile">rm test1.txt</string>
     <string-array name="cmd_init_bash_profile">
+        <item>rm test1.txt\n</item>
         <item>echo -e "JAVA_HOME=/usr/lib/jvm/jdk1.8.0_15" >> test1.txt\n</item>
         <item>echo -e "PATH='$PATH:$JAVA_HOME/bin'" >> test1.txt\n</item>
         <item>echo -e "\n" >> test1.txt</item>
         <item>echo -e "export JAVA_HOME PATH" >> test1.txt\n</item>
         <item>echo -e "export BOOTH_ID=!@#$" >> test1.txt\n</item>
-        <item>echo -e "alias ll='ls -all'" >> test1.txt\n</item>
+        <item>echo -e "alias ll= \"\'"ls -all"\'\"" >> test1.txt\n</item>
         <item>echo -e "export SPRING_PROFILES_ACTIVE=real" >> test1.txt\n</item>
         <item>cat test1.txt</item>
     </string-array>
+
     <string-array name="cmd_remove_bash_profile">
         <item>clear\n</item>
         <item>rm test1.txt\n</item>
     </string-array>
+
     <string-array name="cmd_read_bash_profile">
-        <item>clear\n</item>
-        <item>cat test1.txt\n</item>
+        <item>cat test1.txt</item>
     </string-array>
 </resources>

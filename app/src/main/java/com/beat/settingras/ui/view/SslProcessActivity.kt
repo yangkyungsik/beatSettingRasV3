@@ -1,5 +1,6 @@
 package com.beat.settingras.ui.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.beat.settingras.Constant
@@ -28,10 +29,18 @@ class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel
     }
 
     override fun initObserver() {
-        viewModel.cmdText.observe(this, Observer {
+        viewModel.cmdText.observe(this) {
             binding.tvScroll.append(it)
             binding.scrollview.scrollTo(0, binding.tvScroll.bottom)
-        })
+        }
+        viewModel.readText.observe(this) {
+            if(!it.isNullOrEmpty()) {
+                var intent = Intent(applicationContext, ReadTextActivity::class.java).apply {
+                    putExtra(Constant.KEY.DATA, it)
+                }
+                startActivity(intent)
+            }
+        }
     }
 
     override fun initListener() {
@@ -40,11 +49,11 @@ class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel
         }
 
         binding.btnSendMsg2.setOnClickListener {
-            viewModel.readFile(resources.getStringArray(R.array.cmd_init_bash_profile))
+            viewModel.sendMsgArray(resources.getStringArray(R.array.cmd_remove_bash_profile))
         }
 
-        binding.btnSendMsg2.setOnClickListener {
-
+        binding.btnSendMsg3.setOnClickListener {
+            viewModel.readFile(resources.getStringArray(R.array.cmd_read_bash_profile))
         }
     }
 
