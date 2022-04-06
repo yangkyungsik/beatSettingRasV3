@@ -32,6 +32,7 @@
     <string name="cmd_remove_bash_profile">cmd_remove_bash_profile</string>
     <string name="cmd_read_bash_profile">cmd_read_bash_profile</string>
     <string name="cmd_source_bash_profile">cmd_source_bash_profile</string>
+    <string name="cmd_reboot_raspberry">cmd_reboot_raspberry</string>
 
 
     <!-- deprecated

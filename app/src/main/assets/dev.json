@@ -15,5 +15,5 @@
   ],
   "cmd_read_bash_profile":["cat test1.txt"],
   "cmd_source_bash_profile":["source /home/beat/.bash_profile"],
-  "reboot_raspberry": ["sudo reboot"]
+  "cmd_reboot_raspberry": ["sudo reboot"]
 }

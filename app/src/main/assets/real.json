@@ -14,5 +14,6 @@
     "rm .bash_profile\n"
   ],
   "cmd_read_bash_profile":["cat .bash_profile"],
-  "cmd_source_bash_profile":["source /home/beat/.bash_profile"]
+  "cmd_source_bash_profile":["source /home/beat/.bash_profile"],
+  "cmd_reboot_raspberry": ["sudo reboot"]
 }

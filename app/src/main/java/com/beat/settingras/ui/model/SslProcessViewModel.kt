@@ -63,26 +63,26 @@ class SslProcessViewModel(private val repository: RemoteSSLRepository) : BaseVie
         }
     }
 
-    fun sendMsg(msg: String) {
-        viewModelScope.launch {
-            repository.sendMsg(msg)
-                .flowOn(Dispatchers.Default)
-                .catch {
-                    AppLog.d(TAG, "connect error ${this.toString()}")
-                    showToast(R.string.error_connect)
-                    finish.value = true
-                }
-                .collect {
-                    AppLog.d(TAG, "connect $it")
-                    cmdText.value = it
-                }
-        }
-    }
+//    fun sendMsg(msg: String) {
+//        viewModelScope.launch {
+//            repository.sendMsg(msg)
+//                .flowOn(Dispatchers.Default)
+//                .catch {
+//                    AppLog.d(TAG, "connect error ${this.toString()}")
+//                    showToast(R.string.error_connect)
+//                    finish.value = true
+//                }
+//                .collect {
+//                    AppLog.d(TAG, "connect $it")
+//                    cmdText.value = it
+//                }
+//        }
+//    }
 
-    fun sendMsgArray(key: String) {
+    fun sendMsgArray(key: String,isAuth:Boolean=false) {
         viewModelScope.launch {
 
-            var msgArr: String? = setMsgParam(key)
+            var msgArr: String? = setMsgParam(key,isAuth)
             AppLog.d("msgArr : $msgArr")
             if(msgArr == ""){
                 showToast(R.string.error_connect)
@@ -131,7 +131,7 @@ class SslProcessViewModel(private val repository: RemoteSSLRepository) : BaseVie
         }
     }
 
-    private fun setMsgParam(key:String):String?{
+    private fun setMsgParam(key:String,isAuth:Boolean=false):String?{
         try {
             var msgArr:String?=""
             var jsonArr: JSONArray? = cmdJson?.getJSONArray(key)
@@ -145,6 +145,8 @@ class SslProcessViewModel(private val repository: RemoteSSLRepository) : BaseVie
                         msgArr += jsonArr.getString(i) + "\n"
                     }
                 }
+                if(isAuth)
+                    msgArr += password+"\n"
                 return msgArr
             } else {
                 showToast(R.string.error_connect)

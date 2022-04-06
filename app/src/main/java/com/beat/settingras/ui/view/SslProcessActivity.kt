@@ -61,7 +61,9 @@ class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel
         binding.btnSendMsg4.setOnClickListener {
             viewModel.sendMsgArray(getString(R.string.cmd_source_bash_profile))
         }
-
+        binding.btnSendMsg5.setOnClickListener {
+            viewModel.sendMsgArray(getString(R.string.cmd_reboot_raspberry),true)
+        }
     }
 
 
