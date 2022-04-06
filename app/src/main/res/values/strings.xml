@@ -27,6 +27,11 @@
     <string name="btn_3">Read bash_profile</string>
     <string name="btn_4">Install ADB</string>
 
+    <string name="cmd_init_bash_profile">cmd_init_bash_profile</string>
+    <string name="cmd_remove_bash_profile">cmd_remove_bash_profile</string>
+    <string name="cmd_read_bash_profile">cmd_read_bash_profile</string>
+
+
     <string-array name="cmd_init_bash_profile">
         <item>rm test1.txt\n</item>
         <item>echo -e "JAVA_HOME=/usr/lib/jvm/jdk1.8.0_15" >> test1.txt\n</item>

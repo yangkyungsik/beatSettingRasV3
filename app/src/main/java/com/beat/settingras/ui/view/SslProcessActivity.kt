@@ -2,13 +2,14 @@ package com.beat.settingras.ui.view
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.lifecycle.Observer
+import com.beat.settingras.BuildConfig
 import com.beat.settingras.Constant
 import com.beat.settingras.R
 import com.beat.settingras.databinding.ActivitySslProcessBinding
 import com.beat.settingras.ui.BaseActivity
 import com.beat.settingras.ui.model.SslProcessViewModel
 import com.beat.settingras.util.CommonUtil
+import org.json.JSONObject
 
 class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel::class) {
 
@@ -24,7 +25,8 @@ class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel
             CommonUtil.getIntentExtra(intent, Constant.KEY.PORT, 0),
             CommonUtil.getIntentExtra(intent, Constant.KEY.USERNAME, ""),
             CommonUtil.getIntentExtra(intent, Constant.KEY.PW, ""),
-            CommonUtil.getIntentExtra(intent, Constant.KEY.STORECODE, "")
+            CommonUtil.getIntentExtra(intent, Constant.KEY.STORECODE, ""),
+            JSONObject(CommonUtil.readAsset(applicationContext, BuildConfig.SSH_CMD_FILENAME,""))
         )
     }
 
@@ -45,15 +47,15 @@ class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel
 
     override fun initListener() {
         binding.btnSendMsg1.setOnClickListener {
-            viewModel.sendMsgArray(resources.getStringArray(R.array.cmd_init_bash_profile))
+            viewModel.sendMsgArray(getString(R.string.cmd_init_bash_profile))
         }
 
         binding.btnSendMsg2.setOnClickListener {
-            viewModel.sendMsgArray(resources.getStringArray(R.array.cmd_remove_bash_profile))
+            viewModel.sendMsgArray(getString(R.string.cmd_remove_bash_profile))
         }
 
         binding.btnSendMsg3.setOnClickListener {
-            viewModel.readFile(resources.getStringArray(R.array.cmd_read_bash_profile))
+            viewModel.readFile(getString(R.string.cmd_read_bash_profile))
         }
     }
 

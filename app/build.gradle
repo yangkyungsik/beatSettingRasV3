@@ -63,10 +63,18 @@ android {
 
     flavorDimensions "version"
     productFlavors{
+        dev{
+            dimension "version"
+            buildConfigField "boolean","IS_LOG","true"
+            buildConfigField "boolean","IS_REAL","false"
+            buildConfigField "String","SSH_CMD_FILENAME",'"dev.json"'
+            manifestPlaceholders = [ appLabel: "@string/app_name" ]
+        }
         real{
             dimension "version"
-            buildConfigField "boolean","IS_LOG","false"
+            buildConfigField "boolean","IS_LOG","true"
             buildConfigField "boolean","IS_REAL","true"
+            buildConfigField "String","SSH_CMD_FILENAME",'"real.json"'
             manifestPlaceholders = [ appLabel: "@string/app_name" ]
         }
     }
@@ -82,9 +90,7 @@ android {
             def date = new Date()
             def formattedDate = date.format('yyyyMMdd_HHmm')
             def flavor = variant.productFlavors[0].name
-
             def newApkName = project + SEP + flavor + SEP + version + SEP + versionCode + SEP + formattedDate + ".apk"
-
             outputFileName = new File(newApkName)
         }
     }

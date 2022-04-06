@@ -191,6 +191,7 @@ object CommonUtil {
             }
             sb.toString()
         } catch (e: IOException) {
+            e.printStackTrace()
             defaultS
         }
     }

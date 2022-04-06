@@ -3,10 +3,14 @@ package com.beat.settingras.ui.view
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import com.beat.settingras.AppLog
 import com.beat.settingras.Constant
 import com.beat.settingras.databinding.ActivitySslLoginBinding
 import com.beat.settingras.ui.BaseActivity
 import com.beat.settingras.ui.model.SslLoginViewModel
+import com.beat.settingras.util.CommonUtil
+import com.google.gson.JsonObject
+import org.json.JSONObject
 
 /**
  * SSL 연결 화면

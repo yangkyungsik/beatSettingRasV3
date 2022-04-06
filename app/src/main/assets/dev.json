@@ -1,0 +1,17 @@
+{
+  "cmd_init_bash_profile": [
+    "rm test1.txt\n",
+    "echo -e JAVA_HOME=/usr/lib/jvm/jdk1.8.0_15 >> test1.txt\n",
+    "echo -e 'PATH=$PATH:$JAVA_HOME/bin' >> test1.txt\n",
+    "echo -e export JAVA_HOME PATH >> test1.txt\n",
+    "echo -e export BOOTH_ID=!@#$ >> test1.txt\n",
+    "echo -e alias ll= \\'ls -all\\' >> test1.txt\n",
+    "echo -e \"export SPRING_PROFILES_ACTIVE=real\" >> test1.txt\n",
+    "cat test1.txt"
+  ],
+  "cmd_remove_bash_profile":[
+    "clear\n",
+	"rm test1.txt\n"
+  ],
+  "cmd_read_bash_profile":["cat test1.txt"]
+}
