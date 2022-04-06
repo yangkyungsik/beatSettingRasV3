@@ -57,6 +57,11 @@ class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel
         binding.btnSendMsg3.setOnClickListener {
             viewModel.readFile(getString(R.string.cmd_read_bash_profile))
         }
+
+        binding.btnSendMsg4.setOnClickListener {
+            viewModel.sendMsgArray(getString(R.string.cmd_source_bash_profile))
+        }
+
     }
 
 
