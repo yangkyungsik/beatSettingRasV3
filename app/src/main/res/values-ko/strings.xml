@@ -2,25 +2,25 @@
     <string name="app_name">B;eat Setting Ras 3.0</string>
 
     <!-- 로그인 화면 -->
-    <string name="login">Login</string>
-    <string name="ip_address">IP Address</string>
-    <string name="port">Port</string>
-    <string name="password">Password</string>
-    <string name="username">username</string>
-    <string name="storecode">Storecode</string>
+    <string name="login">로그인</string>
+    <string name="ip_address">IP</string>
+    <string name="port">포트</string>
+    <string name="password">비밀번호</string>
+    <string name="username">아이디</string>
+    <string name="storecode">매장코드</string>
 
-    <string name="msg_null_ip">IP is NULL</string>
-    <string name="msg_null_port">Port is NULL</string>
-    <string name="msg_null_username">username is NULL</string>
-    <string name="msg_null_pw">PW is NULL</string>
-    <string name="msg_null_storecode">Storecode is NULL</string>
+    <string name="msg_null_ip">IP가 없습니다.</string>
+    <string name="msg_null_port">포트번호가 없습니다.</string>
+    <string name="msg_null_username">아이디가 없습니다.</string>
+    <string name="msg_null_pw">비밀번호가 없습니다.</string>
+    <string name="msg_null_storecode">매장코드가 없습니다.</string>
 
     <string name="default_ip"></string>
     <string name="default_port"></string>
     <string name="default_username"></string>
     <string name="default_storecode"></string>
 
-    <string name="error_connect">Connet failed. Check ip, port, username, password</string>
+    <string name="error_connect">연결에 실패하였습니다. IP, 포트, 아이디 및 비밀번호를 확인해주세요.</string>
 
     <string name="btn_1">Write bash_profile</string>
     <string name="btn_2">Remove bash_profile</string>

@@ -53,7 +53,7 @@ class SslProcessViewModel(private val repository: RemoteSSLRepository) : BaseVie
             repository.connect2()
                 .flowOn(Dispatchers.Default)
                 .catch {
-                    AppLog.d(TAG, "connect error ${this.toString()}")
+                    AppLog.d(TAG, "connect error")
                     showToast(R.string.error_connect)
                     finish.value = true
                 }
