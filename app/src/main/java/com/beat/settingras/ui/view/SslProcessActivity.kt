@@ -33,7 +33,10 @@ class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel
     override fun initObserver() {
         viewModel.cmdText.observe(this) {
             binding.tvScroll.append(it)
-            binding.scrollview.scrollTo(0, binding.tvScroll.bottom)
+            binding.scrollview.postDelayed(Runnable {
+                binding.scrollview.smoothScrollTo(0, binding.tvScroll.bottom)
+            },500)
+
         }
         viewModel.readText.observe(this) {
             if(!it.isNullOrEmpty()) {
@@ -62,7 +65,7 @@ class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel
             viewModel.sendMsgArray(getString(R.string.cmd_source_bash_profile))
         }
         binding.btnSendMsg5.setOnClickListener {
-            viewModel.sendMsgArray(getString(R.string.cmd_reboot_raspberry),true)
+            viewModel.sendMsgArray(getString(R.string.cmd_reboot_raspberry), isAuth = true, isFinish = true)
         }
     }
 

@@ -60,12 +60,13 @@ class SslProcessViewModel(private val repository: RemoteSSLRepository) : BaseVie
                 }
                 .collect {
                     progressDialog.value = false
+                    showToast(R.string.success_connect)
                     AppLog.d(TAG, "connect $it")
                 }
         }
     }
 
-    fun sendMsgArray(key: String,isAuth:Boolean=false) {
+    fun sendMsgArray(key: String,isAuth:Boolean=false,isFinish:Boolean=false) {
         viewModelScope.launch {
 
             var msgArr: String? = setMsgParam(key,isAuth)
@@ -89,6 +90,10 @@ class SslProcessViewModel(private val repository: RemoteSSLRepository) : BaseVie
                     AppLog.d(TAG, "connect $it")
                     progressDialog.value = false
                     cmdText.value = it
+                    if(isFinish){
+                        showToast(R.string.msg_reboot_logout)
+                        finish.value = true
+                    }
                 }
         }
     }

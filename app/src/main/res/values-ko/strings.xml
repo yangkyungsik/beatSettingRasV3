@@ -14,13 +14,15 @@
     <string name="msg_null_username">아이디가 없습니다.</string>
     <string name="msg_null_pw">비밀번호가 없습니다.</string>
     <string name="msg_null_storecode">매장코드가 없습니다.</string>
+    <string name="msg_reboot_logout">라즈베리파이가 재부팅되었습니다. 현재 화면을 종료합니다.</string>
 
-    <string name="default_ip"></string>
-    <string name="default_port"></string>
+    <string name="default_ip">192.168.190.82</string>
+    <string name="default_port">2222</string>
     <string name="default_username"></string>
     <string name="default_storecode"></string>
 
     <string name="error_connect">연결에 실패하였습니다. IP, 포트, 아이디 및 비밀번호를 확인해주세요.</string>
+    <string name="success_connect">접속에 성공했습니다.</string>
 
     <string name="btn_1">Write bash_profile</string>
     <string name="btn_2">Remove bash_profile</string>

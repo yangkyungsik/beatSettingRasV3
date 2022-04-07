@@ -14,13 +14,15 @@
     <string name="msg_null_username">username is NULL</string>
     <string name="msg_null_pw">PW is NULL</string>
     <string name="msg_null_storecode">Storecode is NULL</string>
+    <string name="msg_reboot_logout">Raspberry is Rebooted. Current Scrren is Closed.</string>
 
-    <string name="default_ip"></string>
-    <string name="default_port"></string>
+    <string name="default_ip">192.168.190.82</string>
+    <string name="default_port">2222</string>
     <string name="default_username"></string>
     <string name="default_storecode"></string>
 
     <string name="error_connect">Connet failed. Check ip, port, username, password</string>
+    <string name="success_connect">Connect Success</string>
 
     <string name="btn_1">Write bash_profile</string>
     <string name="btn_2">Remove bash_profile</string>
