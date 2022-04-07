@@ -46,38 +46,24 @@ class SslProcessViewModel(private val repository: RemoteSSLRepository) : BaseVie
             showToast(R.string.error_connect)
             finish.value = true
         }
-
+        progressDialog.value = true
         repository.setConnectInfo(ip, port, userName, password)
 
         viewModelScope.launch {
-            repository.connect2()
+            repository.connect()
                 .flowOn(Dispatchers.Default)
                 .catch {
                     AppLog.d(TAG, "connect error")
                     showToast(R.string.error_connect)
+                    progressDialog.value = false
                     finish.value = true
                 }
                 .collect {
+                    progressDialog.value = false
                     AppLog.d(TAG, "connect $it")
                 }
         }
     }
-
-//    fun sendMsg(msg: String) {
-//        viewModelScope.launch {
-//            repository.sendMsg(msg)
-//                .flowOn(Dispatchers.Default)
-//                .catch {
-//                    AppLog.d(TAG, "connect error ${this.toString()}")
-//                    showToast(R.string.error_connect)
-//                    finish.value = true
-//                }
-//                .collect {
-//                    AppLog.d(TAG, "connect $it")
-//                    cmdText.value = it
-//                }
-//        }
-//    }
 
     fun sendMsgArray(key: String,isAuth:Boolean=false) {
         viewModelScope.launch {
@@ -89,15 +75,19 @@ class SslProcessViewModel(private val repository: RemoteSSLRepository) : BaseVie
                 return@launch
             }
 
+            progressDialog.value = true
+
             repository.sendMsg(msgArr)
                 .flowOn(Dispatchers.Default)
                 .catch {
                     AppLog.d(TAG, "connect error ${this.toString()}")
+                    progressDialog.value = false
                     showToast(R.string.error_connect)
                     finish.value = true
                 }
                 .collect {
                     AppLog.d(TAG, "connect $it")
+                    progressDialog.value = false
                     cmdText.value = it
                 }
         }
@@ -115,16 +105,19 @@ class SslProcessViewModel(private val repository: RemoteSSLRepository) : BaseVie
                 showToast(R.string.error_connect)
                 return@launch
             }
+            progressDialog.value = true
 
             repository.sendMsg(msgArr)
                 .flowOn(Dispatchers.Default)
                 .catch {
                     AppLog.d(TAG, "connect error ${this.toString()}")
+                    progressDialog.value = false
                     showToast(R.string.error_connect)
                     finish.value = true
                 }
                 .collect {
                     AppLog.d(TAG, "connect $it")
+                    progressDialog.value = false
                     cmdText.value = it
                     readText.value = it
                 }

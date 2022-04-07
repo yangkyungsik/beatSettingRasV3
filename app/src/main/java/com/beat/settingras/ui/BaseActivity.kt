@@ -4,12 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.widget.TextView
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -51,7 +51,7 @@ abstract class BaseActivity<VM : BaseViewModel>(
 
     private fun setBaseObserver() {
         AppLog.l()
-        viewModel.refreshing.observe(this, Observer {
+        viewModel.progressDialog.observe(this, Observer {
             if (it == true) {
                 AppLog.d(TAG, "showProgressBar")
                 showProgressDialogView()
@@ -122,16 +122,9 @@ abstract class BaseActivity<VM : BaseViewModel>(
 
             getProgressDialog()?.let {
                 it.show()
-
-                val tvProgress = it.findViewById(R.id.tv_progress) as TextView
-
-                if (!TextUtils.isEmpty(progressMsg)) {
-                    tvProgress.visibility = View.VISIBLE
-                    tvProgress.text = progressMsg
-                } else {
-                    tvProgress.visibility = View.GONE
-                }
+                (it.findViewById<ImageView>(R.id.iv_progress).background as AnimationDrawable).start()
             }
+
         } catch (e: Exception) {
             e.printStackTrace()
         }

@@ -28,6 +28,8 @@ class SslLoginActivity : BaseActivity<SslLoginViewModel>(SslLoginViewModel::clas
         val key = "user.home"
         val path: String = applicationInfo.dataDir
         System.setProperty(key, path)
+
+        showProgressDialogView()
     }
 
 

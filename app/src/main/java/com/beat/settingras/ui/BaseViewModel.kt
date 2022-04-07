@@ -6,27 +6,27 @@ import androidx.lifecycle.ViewModel
 
 open class BaseViewModel : ViewModel() {
 
-    val _refreshing: MutableLiveData<Boolean> = MutableLiveData(false)
-    val refreshing: MutableLiveData<Boolean>
-        get() = _refreshing
+    private val _progressDialog: MutableLiveData<Boolean> = MutableLiveData(false)
+    val progressDialog: MutableLiveData<Boolean>
+        get() = _progressDialog
 
-    val _finish: MutableLiveData<Boolean> = MutableLiveData(false)
+    private val _finish: MutableLiveData<Boolean> = MutableLiveData(false)
     val finish: MutableLiveData<Boolean>
         get() = _finish
 
-    val _toastString: MutableLiveData<String> = MutableLiveData("")
+    private val _toastString: MutableLiveData<String> = MutableLiveData("")
     val toastString: MutableLiveData<String>
         get() = _toastString
 
-    val _toastInt: MutableLiveData<Int> = MutableLiveData(-1)
+    private val _toastInt: MutableLiveData<Int> = MutableLiveData(-1)
     val toastInt: MutableLiveData<Int>
         get() = _toastInt
 
-    val _newIntent: MutableLiveData<Intent> = MutableLiveData()
+    private val _newIntent: MutableLiveData<Intent> = MutableLiveData()
     val newIntent: MutableLiveData<Intent>
         get() = _newIntent
 
-    val _finishIntent: MutableLiveData<Intent> = MutableLiveData()
+    private val _finishIntent: MutableLiveData<Intent> = MutableLiveData()
     val finishIntent: MutableLiveData<Intent>
         get() = _finishIntent
 
@@ -37,4 +37,9 @@ open class BaseViewModel : ViewModel() {
     fun showToast(msg: Int) {
         toastInt.value = msg
     }
+
+    fun showProgressbar(){
+        progressDialog.value = true
+    }
+
 }

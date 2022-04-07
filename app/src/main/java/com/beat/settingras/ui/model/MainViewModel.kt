@@ -16,9 +16,9 @@ class MainViewModel(private val userRepository: UserRepository) : BaseViewModel(
         userRepository.requestSysInfo()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe{_refreshing.value = true}
-            .doOnSuccess{_refreshing.value = false}
-            .doOnError { _refreshing.value = false }
+            .doOnSubscribe{_progressBar.value = true}
+            .doOnSuccess{_progressBar.value = false}
+            .doOnError { _progressBar.value = false }
             .subscribe({
                 test.value = it
             },{

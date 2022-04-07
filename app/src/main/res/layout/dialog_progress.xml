@@ -5,8 +5,8 @@
 
     <ImageView
         android:id="@+id/iv_progress"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:background="@drawable/anim_progress" />
 

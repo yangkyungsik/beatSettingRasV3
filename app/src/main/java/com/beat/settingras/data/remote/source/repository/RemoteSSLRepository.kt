@@ -31,7 +31,7 @@ class RemoteSSLRepository(private val client: SshClient) : AbstractBaseRepositor
         this.password = password
     }
 
-    suspend fun connect2(): Flow<Boolean> = flow {
+    suspend fun connect(): Flow<Boolean> = flow {
         try {
             client.start()
             var session = client?.run {

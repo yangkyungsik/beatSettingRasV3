@@ -31,8 +31,7 @@ class CommonProgressDialog(private var mContext: Context, theme: Int) : BaseDial
         else
             CommonUtil.setStatusNavigationBarBG(mContext, windows, R.color.c_000000, R.color.c_000000)
         setCancelable(true) //백 버튼으로 취소 가능.
-        setCanceledOnTouchOutside(false) //터치로 취소는 불가능.
-        setupViews()
+        setCanceledOnTouchOutside(true) //터치로 취소는 불가능.
     }
 
     private fun setupViews() {}

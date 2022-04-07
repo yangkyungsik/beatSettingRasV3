@@ -19,7 +19,7 @@ class MyWebViewClient : WebViewClient {
     }
 
     override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-        webViewModel.refreshing.value = true
+        webViewModel.progressDialog.value = true
         super.onPageStarted(view, url, favicon)
     }
 
@@ -30,7 +30,7 @@ class MyWebViewClient : WebViewClient {
     override fun onPageFinished(view: WebView?, url: String?) {
         AppLog.d("onPageFinished url : $url")
 
-        webViewModel.refreshing.value = false
+        webViewModel.progressDialog.value = false
         url?.let {
             if(it.contains(API.URL.BASE_WEB_URL) && !isReceivedError)
                 webViewModel.stopRestoreWebView()
