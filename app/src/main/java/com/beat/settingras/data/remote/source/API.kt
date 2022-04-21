@@ -10,17 +10,18 @@ open class API {
 
     object URL{
         const val BOOTH_URL = "http://192.168.190.82:8888" //기본IP
-
         const val URL_DEV = "https://dev-app.beatcorp.io/beat_app/" // API (개발서버) IDC
         const val URL_REAL_URL = "https://app.beatcorp.io/beat_app/" // API (실서버)
-
         const val WEB_DEV_URL = "https://dev-signage.beatcorp.io/3.0/"
         const val WEB_REAL_URL = "https://signage.beatcorp.io/3.0/"
-
         const val WEB_ERROR_LOCAL_URL = "file:///android_asset/error.html"
+        const val AWS_URL = "https://beat3.s3.ap-northeast-2.amazonaws.com"
+        const val AWS_DEV_INFIX = "/jar_files/showroom-raz_prod/module/"
+        const val AWS_PROD_INFIX = "/jar_files/showroom-raz_prod/module/"
 
         val BASE_URL: String = if (BuildConfig.IS_REAL) URL_REAL_URL else URL_DEV
         val BASE_WEB_URL: String = if (BuildConfig.IS_REAL) WEB_REAL_URL else WEB_DEV_URL
+        val BASE_AWS_URL: String = if (BuildConfig.IS_REAL) AWS_URL + AWS_PROD_INFIX else AWS_URL + AWS_DEV_INFIX
 
         val CENTER_API_AUTH_USERNAME = "beat_eye" // CENTER USERNAME
         val CENTER_APP_ID = "beat_eye_api"
@@ -89,5 +90,10 @@ open class API {
     object BOOTHRETURN{
         const val SUCCESS_CODE = "0000"
         const val SUCCESS_MSG = "SUCCESS"
+    }
+
+    object B2{
+        const val DENSO = "/module/senso/"
+
     }
 }

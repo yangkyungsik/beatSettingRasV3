@@ -45,10 +45,11 @@ class RemoteSSLRepository(private val client: SshClient) : AbstractBaseRepositor
             }
             AppLog.e("Connection establihed")
 
-            channel = session.createChannel(org.apache.sshd.common.channel.Channel.CHANNEL_SHELL)
             responseStream = ByteArrayOutputStream()
-            channel?.setOut(responseStream)
-
+            channel = session.createChannel(org.apache.sshd.common.channel.Channel.CHANNEL_SHELL).apply {
+                setOut(responseStream)
+                open().verify(5,TimeUnit.SECONDS)
+            }
             emit(true)
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
@@ -58,13 +59,13 @@ class RemoteSSLRepository(private val client: SshClient) : AbstractBaseRepositor
     }
 
     suspend fun sendMsg(msg: String?): Flow<String> = flow {
-        if (msg.isNullOrEmpty()) {
-            emit("")
-            return@flow
-        }
-
+//        if (msg.isNullOrEmpty()) {
+//            emit("")
+//            return@flow
+//        }
         channel?.let {
             it.open().verify(5,TimeUnit.SECONDS)
+            AppLog.d("isOpen : "+it.isOpen +"${it.streaming.toString()}")
             it.invertedIn.use { pipedIn ->
                 pipedIn?.write(msg?.encodeToByteArray())
                 pipedIn?.flush()
@@ -81,45 +82,6 @@ class RemoteSSLRepository(private val client: SshClient) : AbstractBaseRepositor
         }
         responseStream?.reset()
     }
-
-//    fun connect() {
-//        CoroutineScope(Dispatchers.IO).launch {
-//            try {
-//                try {
-//                    client.start()
-//                    var session = client?.run {
-//                        this.connect(userName, ip, port).verify(10000).session
-//                    }
-//                    if (session != null) {
-//                        session?.addPasswordIdentity(password)
-//                        session?.auth()?.verify(5000)
-//                    }
-//                    AppLog.e(TAG,"Connection establihed")
-//
-//                    channel = session.createChannel(org.apache.sshd.common.channel.Channel.CHANNEL_SHELL)
-//                    var responseStream = ByteArrayOutputStream()
-//                    channel?.setOut(responseStream)
-//
-//                    channel?.open()?.verify(5, TimeUnit.SECONDS)
-//                    channel?.invertedIn.use { pipedIn ->
-//                        pipedIn?.write("java -version\n".toByteArray())
-//                        pipedIn?.flush()
-//                    }
-//                    channel?.waitFor(
-//                        EnumSet.of(ClientChannelEvent.CLOSED),
-//                        TimeUnit.SECONDS.toMillis(5)
-//                    );
-//                    val responseString = String(responseStream.toByteArray())
-//                    Log.d(TAG, responseString)
-//                } catch (e: java.lang.Exception) {
-//                    e.printStackTrace()
-//                    AppLog.e(TAG,"error")
-//                }
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//            }
-//        }
-//    }
 
     fun logout() {
         channel?.run {

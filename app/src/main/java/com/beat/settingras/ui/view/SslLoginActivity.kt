@@ -30,6 +30,10 @@ class SslLoginActivity : BaseActivity<SslLoginViewModel>(SslLoginViewModel::clas
         System.setProperty(key, path)
 
         showProgressDialogView()
+        binding.etId.setText("beat")
+        binding.etPort.setText("2222")
+        binding.etPw.setText("qlxmXbeat!!")
+        binding.etStoreCode.setText("X6011")
     }
 
 
