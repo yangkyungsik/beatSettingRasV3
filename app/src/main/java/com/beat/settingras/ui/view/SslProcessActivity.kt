@@ -51,7 +51,7 @@ class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel
     override fun initListener() {
         binding.btnSendMsg1.setOnClickListener {
             //iewModel.sendMsgArray(getString(R.string.cmd_init_bash_profile))
-            viewModel.downloadFile("postfix_filename","test_download")
+            viewModel.downloadFile("postfix_filename","denso")
         }
 
         binding.btnSendMsg2.setOnClickListener {

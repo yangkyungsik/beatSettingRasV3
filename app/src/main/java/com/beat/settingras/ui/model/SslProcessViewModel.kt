@@ -221,7 +221,8 @@ class SslProcessViewModel(private val repository: RemoteSSLRepository) : BaseVie
                 val len = fileArr.length()
                 for (i in 0 until len) {
                     AppLog.d("jsonArr : ${fileArr.getString(i)}")
-                    msgArr +="rm $filePath+${fileArr.getString(i)}\n"
+                    val splitArr = fileArr.getString(i).split("/")
+                    msgArr +="rm $filePath${splitArr[splitArr.size-1]}\n"
                     msgArr += "wget -P /home/$filePath ${API.URL.BASE_AWS_URL+fileArr.getString(i)}\n"
                 }
             }
