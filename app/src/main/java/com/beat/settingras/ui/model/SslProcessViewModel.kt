@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONObject
+import java.util.logging.Handler
 
 class SslProcessViewModel(private val repository: RemoteSSLRepository) : BaseViewModel() {
 
@@ -66,6 +67,7 @@ class SslProcessViewModel(private val repository: RemoteSSLRepository) : BaseVie
                     AppLog.d(TAG, "connect $it")
                 }
         }
+
     }
 
     fun sendMsgArray(key: String, isAuth: Boolean = false, isFinish: Boolean = false) {
@@ -116,11 +118,13 @@ class SslProcessViewModel(private val repository: RemoteSSLRepository) : BaseVie
 
             repository.sendMsg(msgArr)
                 .flowOn(Dispatchers.Default)
-                .catch {
-                    AppLog.d(TAG, "connect error ${this.toString()}")
-                    progressDialog.value = false
-                    showToast(R.string.error_connect)
-                    finish.value = true
+                .catch { e->
+                    run {
+                        e.printStackTrace()
+                        progressDialog.value = false
+                        showToast(R.string.error_connect)
+                        finish.value = true
+                    }
                 }
                 .collect {
                     AppLog.d(TAG, "connect $it")
@@ -163,7 +167,7 @@ class SslProcessViewModel(private val repository: RemoteSSLRepository) : BaseVie
                                 cmdText.value = it
                             }
                         }
-                    msgArr="\n"
+                    msgArr=" "
                     delay(5000)
                 }
             }

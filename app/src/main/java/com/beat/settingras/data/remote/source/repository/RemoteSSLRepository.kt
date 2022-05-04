@@ -60,23 +60,22 @@ class RemoteSSLRepository(private val client: SshClient) : AbstractBaseRepositor
     }
 
     suspend fun sendMsg(msg: String?): Flow<String> = flow {
-//        if (msg.isNullOrEmpty()) {
-//            emit("")
-//            return@flow
-//        }
         channel?.let {
-            it.open().verify(5,TimeUnit.SECONDS)
             AppLog.d("isOpen : "+it.isOpen +"${it.streaming.toString()}")
-            it.invertedIn.use { pipedIn ->
-                pipedIn?.write(msg?.encodeToByteArray())
-                pipedIn?.flush()
-            }
+            it.invertedIn.write(msg?.encodeToByteArray())
+            it.invertedIn.flush()
         }
 
         delay(1000)
+
         if (responseStream != null) {
             val responseString = String(responseStream!!.toByteArray())
-            Log.d(TAG, "response : $responseString")
+            Log.d(TAG, "response : ${responseString.trim()}")
+            if(responseString.isNullOrEmpty() || responseString.isNullOrBlank()) {
+                AppLog.d(TAG,"responseString isNullOrEmpty")
+                emit("")
+                return@flow
+            }
             emit(responseString)
         } else {
             emit("")
