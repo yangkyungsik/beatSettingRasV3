@@ -17,10 +17,15 @@
     "cat test1.txt"
   ],
   "cmd_source_bash_profile": [
-    "source /home/beat/.bash_profile"
+    "source /home/beat/test1.txt"
   ],
   "cmd_reboot_raspberry": [
     "sudo reboot"
+  ],
+  "cmd_check_export_value": [
+    "echo $JAVA_HOME\n",
+    "echo $BOOTH_ID\n",
+    "echo $SPRING_PROFILES_ACTIVE"
   ],
   "postfix_filename": {
     "denso": {

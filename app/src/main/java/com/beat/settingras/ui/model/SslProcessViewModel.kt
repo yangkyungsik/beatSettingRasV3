@@ -174,7 +174,50 @@ class SslProcessViewModel(private val repository: RemoteSSLRepository) : BaseVie
         } catch (e:Exception){
             e.printStackTrace()
         }
+    }
 
+    fun downloadAllModule(key: String){
+        viewModelScope?.launch {
+            val iterator:Iterator<String> = cmdJson?.getJSONObject(key)?.keys() as Iterator<String>
+            var msgArr: String? = ""
+            var isLaunch:Boolean = true
+
+            while(iterator.hasNext()){
+                val subkey:String = iterator.next()
+                AppLog.d("key :$subkey")
+                msgArr += setDownloadParam(key,subkey)
+            }
+            AppLog.d("msgArr : $msgArr")
+            if (msgArr == "") {
+                showToast(R.string.error_connect)
+                return@launch
+            }
+            progressDialog.value = true
+            while(isLaunch){
+                repository.sendMsg(msgArr)
+                    .flowOn(Dispatchers.Default)
+                    .catch {
+                        AppLog.d(TAG, "connect error ${this.toString()}")
+                        progressDialog.value = false
+                        showToast(R.string.error_connect)
+                        finish.value = true
+                    }
+                    .collect {
+                        AppLog.d(TAG, "connect $it")
+                        if(it.isNullOrEmpty()){
+                            progressDialog.value = false
+                            isLaunch = false
+                            return@collect
+                        }
+                        else{
+                            cmdText.value = it
+                        }
+                    }
+                msgArr=" "
+                delay(5000)
+            }
+
+        }
     }
 
     /**

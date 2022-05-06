@@ -9,11 +9,89 @@
     "echo -e \"export SPRING_PROFILES_ACTIVE=real\" >> .bash_profile\n",
     "cat .bash_profile"
   ],
-  "cmd_remove_bash_profile":[
+  "cmd_remove_bash_profile": [
     "clear\n",
     "rm .bash_profile\n"
   ],
-  "cmd_read_bash_profile":["cat .bash_profile"],
-  "cmd_source_bash_profile":["source /home/beat/.bash_profile"],
-  "cmd_reboot_raspberry": ["sudo reboot"]
+  "cmd_read_bash_profile": [
+    "cat .bash_profile"
+  ],
+  "cmd_source_bash_profile": [
+    "source /home/beat/.bash_profile"
+  ],
+  "cmd_reboot_raspberry": [
+    "sudo reboot"
+  ],
+  "cmd_check_export_value": [
+    "echo $JAVA_HOME\n",
+    "echo $BOOTH_ID\n",
+    "echo $SPRING_PROFILES_ACTIVE"
+  ],
+  "postfix_filename": {
+    "denso": {
+      "filelist": [
+        "denso/application.properties",
+        "denso/denso.jar"
+      ],
+      "filepath": "service/module/denso/"
+    },
+    "tablet": {
+      "filelist": [
+        "tablet/application.properties",
+        "tablet/tablet.jar"
+      ],
+      "filepath": "service/module/tablet/"
+    },
+    "face": {
+      "filelist": [
+        "face/application.properties",
+        "face/face.jar"
+      ],
+      "filepath": "service/module/face/"
+    },
+    "mspc": {
+      "filelist": [
+        "mspc/application.properties",
+        "mspc/spc_embedded-manager.jar"
+      ],
+      "filepath": "service/module/mspc/"
+    },
+    "spc": {
+      "filelist": [
+        "spc/application.properties",
+        "spc/spc.jar"
+      ],
+      "filepath": "service/module/spc/"
+    },
+    "tool": {
+      "filelist": [
+        "tool/application.properties",
+        "tool/tool-0.0.1-SNAPSHOT.jar"
+      ],
+      "filepath": "service/module/tool/"
+    },
+    "thermoplan": {
+      "filelist": [
+        "thermoplan/application.properties",
+        "thermoplan/thermoplan_manager.jar"
+      ],
+      "filepath": "service/module/thermoplan/"
+    },
+    "thermoplan_left": {
+      "filelist": [
+        "thermoplan/left/application.properties",
+        "thermoplan/left/startup.sh",
+        "thermoplan/left/thermoplan-0.0.1-SNAPSHOT.jar"
+      ],
+      "filepath": "service/module/thermoplan/left/"
+    },
+    "thermoplan_right": {
+      "filelist": [
+        "thermoplan/right/application.properties",
+        "thermoplan/right/startup.sh",
+        "thermoplan/right/thermoplan-0.0.1-SNAPSHOT.jar"
+      ],
+      "filepath": "service/module/thermoplan/right/"
+    }
+  }
 }

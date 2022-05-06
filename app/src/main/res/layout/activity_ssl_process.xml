@@ -34,55 +34,58 @@
 
         <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="16dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="16dp">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_send_msg1"
-                    android:text="@string/btn_1"
+                    android:id="@+id/btn_download"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:text="@string/btn_download" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_send_msg2"
-                    android:text="@string/btn_2"
+                    android:id="@+id/btn_write_bash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:text="@string/btn_write_bash" />
+
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_send_msg3"
-                    android:text="@string/btn_3"
+                    android:id="@+id/btn_read_bash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:text="@string/btn_read_bash" />
+
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_send_msg4"
-                    android:text="@string/btn_4"
+                    android:id="@+id/btn_source_bash"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:text="@string/btn_source_bash" />
+
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_send_msg5"
-                    android:text="@string/cmd_reboot_raspberry"
+                    android:id="@+id/btn_check_export_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:text="@string/btn_check_export_value" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_remove_bash"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_remove_bash" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_reboot_ras"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_reboot_ras" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </HorizontalScrollView>

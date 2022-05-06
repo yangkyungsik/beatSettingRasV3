@@ -26,7 +26,7 @@ class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel
             CommonUtil.getIntentExtra(intent, Constant.KEY.USERNAME, ""),
             CommonUtil.getIntentExtra(intent, Constant.KEY.PW, ""),
             CommonUtil.getIntentExtra(intent, Constant.KEY.STORECODE, ""),
-            JSONObject(CommonUtil.readAsset(applicationContext, BuildConfig.SSH_CMD_FILENAME,""))
+            JSONObject(CommonUtil.readAsset(applicationContext, BuildConfig.SSH_CMD_FILENAME, ""))
         )
     }
 
@@ -35,11 +35,11 @@ class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel
             binding.tvScroll.append(it)
             binding.scrollview.postDelayed(Runnable {
                 binding.scrollview.smoothScrollTo(0, binding.tvScroll.bottom)
-            },500)
+            }, 500)
 
         }
         viewModel.readText.observe(this) {
-            if(!it.isNullOrEmpty()) {
+            if (!it.isNullOrEmpty()) {
                 var intent = Intent(applicationContext, ReadTextActivity::class.java).apply {
                     putExtra(Constant.KEY.DATA, it)
                 }
@@ -49,26 +49,36 @@ class SslProcessActivity : BaseActivity<SslProcessViewModel>(SslProcessViewModel
     }
 
     override fun initListener() {
-        binding.btnSendMsg1.setOnClickListener {
-            //iewModel.sendMsgArray(getString(R.string.cmd_init_bash_profile))
-            viewModel.downloadFile("postfix_filename","denso")
+        binding.btnDownload.setOnClickListener {
+            viewModel.downloadAllModule(getString(R.string.cmd_download_module))
+        }
+        binding.btnWriteBash.setOnClickListener {
+            viewModel.sendMsgArray(getString(R.string.cmd_init_bash_profile))
         }
 
-        binding.btnSendMsg2.setOnClickListener {
+        binding.btnRemoveBash.setOnClickListener {
             viewModel.sendMsgArray(getString(R.string.cmd_remove_bash_profile))
         }
 
-        binding.btnSendMsg3.setOnClickListener {
+        binding.btnReadBash.setOnClickListener {
             viewModel.readFile(getString(R.string.cmd_read_bash_profile))
         }
 
-        binding.btnSendMsg4.setOnClickListener {
+        binding.btnSourceBash.setOnClickListener {
             viewModel.sendMsgArray(getString(R.string.cmd_source_bash_profile))
         }
-        binding.btnSendMsg5.setOnClickListener {
-            viewModel.sendMsgArray(getString(R.string.cmd_reboot_raspberry), isAuth = true, isFinish = true)
+
+        binding.btnCheckExportValue.setOnClickListener {
+            viewModel.readFile(getString(R.string.cmd_check_export_value))
+        }
+
+        binding.btnRebootRas.setOnClickListener {
+            viewModel.sendMsgArray(
+                getString(R.string.cmd_reboot_raspberry),
+                isAuth = true,
+                isFinish = true
+            )
         }
     }
-
 
 }

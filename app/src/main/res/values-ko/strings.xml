@@ -24,17 +24,21 @@
     <string name="error_connect">연결에 실패하였습니다. IP, 포트, 아이디 및 비밀번호를 확인해주세요.</string>
     <string name="success_connect">접속에 성공했습니다.</string>
 
-    <string name="btn_1">Write bash_profile</string>
-    <string name="btn_2">Remove bash_profile</string>
-    <string name="btn_3">Read bash_profile</string>
-    <string name="btn_4">Source bash_profile</string>
+    <string name="btn_download">모듈 다운로드</string>
+    <string name="btn_write_bash">bash_profile 파일 쓰기</string>
+    <string name="btn_remove_bash">bash_profile 삭제</string>
+    <string name="btn_read_bash">bash_profile 읽기</string>
+    <string name="btn_source_bash">bash_profile 적용</string>
+    <string name="btn_check_export_value">bash_profile 적용 확인</string>
+    <string name="btn_reboot_ras">라즈베리파이 재부팅</string>
 
     <string name="cmd_init_bash_profile">cmd_init_bash_profile</string>
     <string name="cmd_remove_bash_profile">cmd_remove_bash_profile</string>
     <string name="cmd_read_bash_profile">cmd_read_bash_profile</string>
     <string name="cmd_source_bash_profile">cmd_source_bash_profile</string>
     <string name="cmd_reboot_raspberry">cmd_reboot_raspberry</string>
-
+    <string name="cmd_download_module">postfix_filename</string>
+    <string name="cmd_check_export_value">cmd_check_export_value</string>
 
     <!-- deprecated
     <string-array name="cmd_init_bash_profile">
