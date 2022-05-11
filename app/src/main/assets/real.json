@@ -1,5 +1,6 @@
 {
   "cmd_init_bash_profile": [
+    "cd ~beat",
     "rm .bash_profile\n",
     "echo -e JAVA_HOME=/usr/lib/jvm/jdk1.8.0_15 >> .bash_profile\n",
     "echo -e 'PATH=$PATH:$JAVA_HOME/bin' >> .bash_profile\n",
@@ -10,13 +11,16 @@
     "cat .bash_profile"
   ],
   "cmd_remove_bash_profile": [
+    "cd ~beat",
     "clear\n",
     "rm .bash_profile\n"
   ],
   "cmd_read_bash_profile": [
+    "cd ~beat",
     "cat .bash_profile"
   ],
   "cmd_source_bash_profile": [
+    "cd ~beat",
     "source /home/beat/.bash_profile"
   ],
   "cmd_reboot_raspberry": [
