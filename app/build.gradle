@@ -176,7 +176,6 @@ dependencies {
 
 
     // Dependencies for local unit tests
-    testImplementation deps.junit
     testImplementation deps.mockito.all
     testImplementation deps.hamcrest
     testImplementation deps.kotlin.stdlib
@@ -186,15 +185,25 @@ dependencies {
     // Android Testing Support Library's runner and rules
     androidTestImplementation deps.axt.runner
     androidTestImplementation deps.axt.rules
+    androidTestImplementation deps.axt.core_test
+    androidTestImplementation deps.axt.core_test_ktx
+    androidTestImplementation deps.axt.core_test_ktx
+    androidTestImplementation deps.axt.ext_truth
+    androidTestUtil deps.axt.orchestrator
 
     // Dependencies for Android unit tests
-    androidTestImplementation deps.junit
     androidTestImplementation deps.mockito.core, { exclude group: 'net.bytebuddy' }
-
+    //JUNIT
+    androidTestImplementation deps.junit.junit
+    androidTestImplementation deps.junit.junit_ktx
     // Espresso UI Testing
     androidTestImplementation deps.espresso.core
     androidTestImplementation deps.espresso.contrib
     androidTestImplementation deps.espresso.intents
+    androidTestImplementation deps.espresso.accessibility
+    androidTestImplementation deps.espresso.web
+    androidTestImplementation deps.espresso.idling
+    androidTestImplementation deps.espresso.idling_resource
 
     // Resolve conflicts between main and test APK:
     androidTestImplementation deps.support.annotations
